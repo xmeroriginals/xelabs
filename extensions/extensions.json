@@ -2,21 +2,21 @@
   {
     "title": "Test 1",
     "description": "Description",
-    "image": "/xelabs/assets/extensions-images/1.svg",
+    "image": "https://xmeroriginals.github.io/xelabs/assets/extensions-images/1.svg",
     "link": "/extensions/test1.js",
     "new": true
   },
   {
     "title": "Test 2",
     "description": "Description",
-    "image": "/xelabs/assets/extensions-images/1.svg",
+    "image": "https://xmeroriginals.github.io/xelabs/assets/extensions-images/1.svg",
     "link": "/extensions/test2.js",
     "new": false
   },
   {
     "title": "Test 3",
     "description": "Description",
-    "image": "/xelabs/assets/extensions-images/1.svg",
+    "image": "https://xmeroriginals.github.io/xelabs/assets/extensions-images/1.svg",
     "link": "/extensions/test3.js",
     "new": true
   }
