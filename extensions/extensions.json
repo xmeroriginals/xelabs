@@ -1,0 +1,23 @@
+[
+  {
+    "title": "Test 1",
+    "description": "Description",
+    "image": "search.png",
+    "link": "/extensions/test1.js",
+    "new": true
+  },
+  {
+    "title": "Test 2",
+    "description": "Description",
+    "image": "theme.png",
+    "link": "/extensions/test2.js",
+    "new": false
+  },
+  {
+    "title": "Test 3",
+    "description": "Description",
+    "image": "notifications.png",
+    "link": "/extensions/test3.js",
+    "new": true
+  }
+]
