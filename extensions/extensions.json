@@ -3,21 +3,21 @@
     "title": "Test 1",
     "description": "Description",
     "image": "https://xmeroriginals.github.io/xelabs/assets/extensions-images/1.svg",
-    "link": "/extensions/test1.js",
+    "link": "https://xmeroriginals.github.io/xelabs/extensions/1.js",
     "new": true
   },
   {
     "title": "Test 2",
     "description": "Description",
     "image": "https://xmeroriginals.github.io/xelabs/assets/extensions-images/1.svg",
-    "link": "/extensions/test2.js",
+    "link": "https://xmeroriginals.github.io/xelabs/extensions/1.js",
     "new": false
   },
   {
     "title": "Test 3",
     "description": "Description",
     "image": "https://xmeroriginals.github.io/xelabs/assets/extensions-images/1.svg",
-    "link": "/extensions/test3.js",
+    "link": "https://xmeroriginals.github.io/xelabs/extensions/1.js",
     "new": true
   }
 ]
