@@ -11,7 +11,7 @@
       return {
         id: "sweetalert",
         name: "Sweet Alert",
-        color1: "#425436",
+        color1: "#f351fc",
         blocks: [
           {
             opcode: "showAlert",
