@@ -15,7 +15,7 @@ class KeyboardPlus {
         return {
             id: 'keyboardplus',
             name: 'Keyboard+',
-			color1: '#585858',
+	    color1: '#585858',
             blocks: [
                 {
                     opcode: 'startCapturingInput',
