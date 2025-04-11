@@ -1,9 +1,9 @@
 [
   {
-    "title": "Test 1",
-    "description": "Description",
-    "image": "https://xmeroriginals.github.io/xelabs/assets/extensions-images/1.svg",
-    "link": "https://xmeroriginals.github.io/xelabs/extensions/1.js",
+    "title": "Sweet Alert",
+    "description": "It allows you to send modern alerts using the Sweet Alert library.",
+    "image": "https://xmeroriginals.github.io/xelabs/assets/extensions-images/sweetalert.svg",
+    "link": "https://xmeroriginals.github.io/xelabs/extensions/sweetalert.js",
     "new": true
   },
   {
