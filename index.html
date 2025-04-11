@@ -4,6 +4,25 @@
   <meta charset="UTF-8">
   <link rel="icon" type="image/png" href="https://xmeroriginals.github.io/xelabs/assets/XeLabsLogo.png" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Discover advanced extensions developed by XeLabs. Explore tools to enhance your Scratch and TurboWarp projects with powerful, creative, and unique extensions.">
+
+  <meta name="keywords" content="XeLabs, Scratch, TurboWarp, Extensions, Plugins, XmerOriginals, Advanced Scratch Tools, Scratch Plugins, TurboWarp Extensions, coding, JavaScript">
+  <meta name="author" content="XmerOriginals">
+  <meta name="language" content="en">
+  <meta name="robots" content="index, follow">
+
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://xmeroriginals.github.io/xelabs/">
+  <meta property="og:title" content="XeLabs | Advanced Extensions">
+  <meta property="og:description" content="Explore the most innovative and advanced Scratch & TurboWarp extensions, crafted by XeLabs.">
+  <meta property="og:image" content="https://xmeroriginals.github.io/xelabs/assets/XeLabsLogo.png">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content="https://xmeroriginals.github.io/xelabs/">
+  <meta name="twitter:title" content="XeLabs | Advanced Extensions">
+  <meta name="twitter:description" content="Explore the most innovative and advanced Scratch & TurboWarp extensions, crafted by XeLabs.">
+  <meta name="twitter:image" content="https://xmeroriginals.github.io/xelabs/assets/XeLabsLogo.png">
+
   <title>XeLabs | Advanced Extensions</title>
   <style>
     * {
@@ -168,6 +187,49 @@
       transition: background-color 0.3s;
       width: fit-content;
     }
+	
+	.footer {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background-color: #1c1c1e;
+      padding: 20px;
+      box-shadow: 0 -0.5px 99px rgba(0,0,0,0.3);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      z-index: 999;
+    }
+
+    .footer .nav,
+    .footer {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+    }
+
+    .footer .nav a,
+    .footer a {
+      color: #aaa;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    .footer .nav a:hover,
+    .footer a:hover {
+      color: #fff;
+    }
+
+    .footer {
+      font-size: 15px;
+    }
+
+    .footer .info {
+      font-size: 13px;
+      color: #666;
+    }
 
     .plugin-btn:hover {
       background-color: #c00;
@@ -201,6 +263,7 @@
       <a href="https://scratch.mit.edu/users/XmerOriginals/">Scratch</a>
     </div>
   </div>
+  
 
   <div class="library" id="pluginContainer">
   </div>
@@ -231,5 +294,17 @@
         console.error('Error ', err);
       });
   </script>
+  
+  <footer class="footer">
+    <div class="nav">
+	  <a href="https://www.instagram.com/xmerofficial/">Instagram</a>
+      <a href="https://scratch.mit.edu/users/XmerOriginals/">Scratch</a>
+      <a href="https://mail.google.com/mail/?view=cm&fs=1&to=xmeroriginals@gmail.com&su=Hello%20dear%20XmerOriginals,">Gmail</a>
+	  <a href="https://github.com/xmeroriginals/xelabs">Source</a>
+    </div>
+    <div class="info">
+      XmerOriginals© | XeLabs is not affiliated with TurboWarp, Scratch, The Scratch Team, or the Scratch Foundation.
+    </div>
+  </footer>
 </body>
 </html>
