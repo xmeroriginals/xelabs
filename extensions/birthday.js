@@ -181,12 +181,4 @@
         }
     }
 
-    Scratch.extensions.register(new Birthday());
-
-    window.addEventListener('resize', () => {
-        const extension = Scratch.extensions.get('confetti');
-        if (extension) {
-            extension.updateCanvasSize();
-        }
-    });
-})(Scratch);
+    Scratch.extensions.register(new Birthday());})(Scratch);
