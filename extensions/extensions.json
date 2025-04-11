@@ -7,11 +7,11 @@
     "new": true
   },
   {
-    "title": "Test 2",
-    "description": "Description",
-    "image": "https://xmeroriginals.github.io/xelabs/assets/extensions-images/1.svg",
-    "link": "https://xmeroriginals.github.io/xelabs/extensions/1.js",
-    "new": false
+    "title": "Birthday",
+    "description": "It allows you to quickly and easily calculate birthdays and start birthday celebration festivities in an optimized way. It also returns the next birthday if it is not due.",
+    "image": "https://xmeroriginals.github.io/xelabs/assets/extensions-images/birthday.svg",
+    "link": "https://xmeroriginals.github.io/xelabs/extensions/birthday.js",
+    "new": true
   },
   {
     "title": "Test 3",
