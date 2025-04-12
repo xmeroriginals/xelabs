@@ -1,78 +1,80 @@
 // Name: Sound Player+
 // ID: soundplayerplus
-// Description: Error-free and best way to launch audio from URL or data uri's. 10 channels and bass levels for your equalizer. Apart from basic functions like audio file control; control device media playback, check if next or previous media is clicked, set image, title, description. Get full control over stop/start on your Project in Device Media Session.
+// Description: Best way to launch audio from URL or data uri's. 10 channels and bass levels for your equalizer. Apart from basic functions like audio file control; control device media playback, check if next or previous media is clicked, set image, title, description. Get full control over stop/start on your Project in Device Media Session.
 // License: MPL-2.0
 
 class SoundPlayerPlus {
   constructor() {
     this.playingSounds = new Map();
-    this.currentSoundURL = '';
+    this.currentSoundURL = "";
     this.isPlaying = false;
-    this.errorStatus = '';
+    this.errorStatus = "";
     this.waitingPromise = null;
     this.volume = 100;
     this.paused = false;
     this.pausedTime = 0;
-	this.audioContext = null;
+    this.audioContext = null;
     this.analyser = null;
     this.frequencyData = null;
-    this.currentlyPlaying = {}
-	this.nextMediaRequested = false;
+    this.currentlyPlaying = {};
+    this.nextMediaRequested = false;
     this.previousMediaRequested = false;
     this.mediaControlsEnabled = false;
   }
 
   getInfo() {
     return {
-      id: 'soundplayerplus',
-      name: 'Sound Player+',
-	  color1: '#fc760a',
+      id: "soundplayerplus",
+      name: "Sound Player+",
+      color1: "#fc760a",
       blocks: [
         {
-          opcode: 'playSound',
+          opcode: "playSound",
           blockType: Scratch.BlockType.COMMAND,
-          text: 'play sound url or data uri [url]',
+          text: "play sound url or data uri [url]",
           arguments: {
             url: {
               type: Scratch.ArgumentType.STRING,
-              defaultValue: 'https://audio.jukehost.co.uk/XsrI9yQUnun5WN362jqCMvUnrQbj5lxh',
+              defaultValue:
+                "https://audio.jukehost.co.uk/XsrI9yQUnun5WN362jqCMvUnrQbj5lxh",
             },
           },
         },
         {
-          opcode: 'playSoundAndWait',
+          opcode: "playSoundAndWait",
           blockType: Scratch.BlockType.COMMAND,
-          text: 'play sound url or data uri[url] and wait',
+          text: "play sound url or data uri[url] and wait",
           arguments: {
             url: {
               type: Scratch.ArgumentType.STRING,
-              defaultValue: 'https://audio.jukehost.co.uk/XsrI9yQUnun5WN362jqCMvUnrQbj5lxh',
+              defaultValue:
+                "https://audio.jukehost.co.uk/XsrI9yQUnun5WN362jqCMvUnrQbj5lxh",
             },
           },
         },
         {
-          opcode: 'stopSound',
+          opcode: "stopSound",
           blockType: Scratch.BlockType.COMMAND,
-          text: 'stop sound',
+          text: "stop sound",
         },
         {
-          opcode: 'pauseSound',
+          opcode: "pauseSound",
           blockType: Scratch.BlockType.COMMAND,
-          text: 'pause sound',
+          text: "pause sound",
         },
         {
-          opcode: 'resumeSound',
+          opcode: "resumeSound",
           blockType: Scratch.BlockType.COMMAND,
-          text: 'resume sound',
-        },
-		{
-            blockType: "label",
-            text: 'Duration',
+          text: "resume sound",
         },
         {
-          opcode: 'seekSound',
+          blockType: "label",
+          text: "Duration",
+        },
+        {
+          opcode: "seekSound",
           blockType: Scratch.BlockType.COMMAND,
-          text: 'go to time [time] seconds in sound',
+          text: "go to time [time] seconds in sound",
           arguments: {
             time: {
               type: Scratch.ArgumentType.NUMBER,
@@ -81,23 +83,23 @@ class SoundPlayerPlus {
           },
         },
         {
-          opcode: 'soundTime',
+          opcode: "soundTime",
           blockType: Scratch.BlockType.REPORTER,
-          text: 'sound duration',
+          text: "sound duration",
         },
         {
-          opcode: 'soundCurrentTime',
+          opcode: "soundCurrentTime",
           blockType: Scratch.BlockType.REPORTER,
-          text: 'sound current duration',
-        },
-		{
-            blockType: "label",
-            text: 'Volume',
+          text: "sound current duration",
         },
         {
-          opcode: 'setVolume',
+          blockType: "label",
+          text: "Volume",
+        },
+        {
+          opcode: "setVolume",
           blockType: Scratch.BlockType.COMMAND,
-          text: 'set volume to [volume]',
+          text: "set volume to [volume]",
           arguments: {
             volume: {
               type: Scratch.ArgumentType.NUMBER,
@@ -106,108 +108,110 @@ class SoundPlayerPlus {
           },
         },
         {
-          opcode: 'getVolume',
+          opcode: "getVolume",
           blockType: Scratch.BlockType.REPORTER,
-          text: 'get volume',
+          text: "get volume",
         },
-		{
-            blockType: "label",
-            text: 'Advanced and Extras',
+        {
+          blockType: "label",
+          text: "Advanced and Extras",
         },
-		{
-     	  opcode: 'enableMediaControls',
+        {
+          opcode: "enableMediaControls",
           blockType: Scratch.BlockType.COMMAND,
-          text: 'set media session controls [ENABLED]',
+          text: "set media session controls [ENABLED]",
           arguments: {
             ENABLED: {
               type: Scratch.ArgumentType.STRING,
-			  menu: 'mediasessionMenu',
-              defaultValue: true
-            }
-          }
+              menu: "mediasessionMenu",
+              defaultValue: true,
+            },
+          },
         },
-		{
-          opcode: 'setMediaImage',
+        {
+          opcode: "setMediaSession",
           blockType: Scratch.BlockType.COMMAND,
-          text: 'set media control image to [IMAGE] with title [TITLE] artist [ARTIST] description [DESCRIPTION]',
+          text: "set media control image to [IMAGE] with title [TITLE] artist [ARTIST] description [ALBUM]",
           arguments: {
             IMAGE: {
               type: Scratch.ArgumentType.STRING,
-              defaultValue: 'https://xmeroriginals.github.io/xelabs/assets/XeLabsLogo.png'
+              defaultValue:
+                "https://xmeroriginals.github.io/xelabs/assets/XeLabsLogo.png",
             },
             TITLE: {
               type: Scratch.ArgumentType.STRING,
-              defaultValue: 'Title'
+              defaultValue: "Title",
             },
             ARTIST: {
               type: Scratch.ArgumentType.STRING,
-              defaultValue: 'Artist Name'
+              defaultValue: "Artist Name",
             },
-            DESCRIPTION: {
+            ALBUM: {
               type: Scratch.ArgumentType.STRING,
-              defaultValue: 'Description'
-            }
-          }
+              defaultValue: "Description",
+            },
+          },
         },
-		{
-          opcode: 'isNextMediaRequested',
+        {
+          opcode: "isNextMediaRequested",
           blockType: Scratch.BlockType.BOOLEAN,
-          text: 'is next media requested?'
+          text: "is next media requested?",
         },
-		{
-          opcode: 'isPreviousMediaRequested',
+        {
+          opcode: "isPreviousMediaRequested",
           blockType: Scratch.BlockType.BOOLEAN,
-          text: 'is previous media requested?'
+          text: "is previous media requested?",
         },
-		{
-          opcode: 'isAudioFile',
+        {
+          opcode: "isAudioFile",
           blockType: Scratch.BlockType.BOOLEAN,
-          text: 'is [URL] an audio file?',
+          text: "is [URL] an audio file?",
           arguments: {
             URL: {
               type: Scratch.ArgumentType.STRING,
-              defaultValue: 'https://audio.jukehost.co.uk/XsrI9yQUnun5WN362jqCMvUnrQbj5lxh'
-            }
-          }
-        },
-		{
-          opcode: 'getBassLevel',
-          blockType: Scratch.BlockType.REPORTER,
-          text: 'bass level'
+              defaultValue:
+                "https://audio.jukehost.co.uk/XsrI9yQUnun5WN362jqCMvUnrQbj5lxh",
+            },
+          },
         },
         {
-          opcode: 'currentSound',
+          opcode: "getBassLevel",
           blockType: Scratch.BlockType.REPORTER,
-          text: 'current sound url or data uri',
+          text: "bass level",
         },
         {
-          opcode: 'isPlayingSound',
+          opcode: "currentSound",
+          blockType: Scratch.BlockType.REPORTER,
+          text: "current sound url or data uri",
+        },
+        {
+          opcode: "isPlayingSound",
           blockType: Scratch.BlockType.BOOLEAN,
-          text: 'is sound playing?',
+          text: "is sound playing?",
         },
-		{
-          opcode: 'getChannelLevel',
+        {
+          opcode: "getChannelLevel",
           blockType: Scratch.BlockType.REPORTER,
-          text: 'Get level of channel [channel]',
+          text: "Get level of channel [channel]",
           arguments: {
             channel: {
               type: Scratch.ArgumentType.STRING,
-              menu: 'channelMenu',
-              defaultValue: '1'
-            }
-          }
-        }
+              menu: "channelMenu",
+              defaultValue: "1",
+            },
+          },
+        },
       ],
       menus: {
-		mediasessionMenu: {
-		  acceptReporters: false,
-          items: ['true','false']
-		},
+        mediasessionMenu: {
+          acceptReporters: false,
+          items: ["true", "false"],
+        },
         channelMenu: {
           acceptReporters: true,
-          items: ['1','2','3','4','5','6','7','8','9','10']
-        }
-      }
+          items: ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"],
+        },
+      },
     };
   }
 
@@ -215,7 +219,10 @@ class SoundPlayerPlus {
     try {
       const existingAudio = this.playingSounds.get(url);
       if (existingAudio) {
-        if (existingAudio.paused && existingAudio.currentTime < existingAudio.duration) {
+        if (
+          existingAudio.paused &&
+          existingAudio.currentTime < existingAudio.duration
+        ) {
           existingAudio.play();
           this.isPlaying = true;
           this.paused = false;
@@ -226,11 +233,11 @@ class SoundPlayerPlus {
       }
 
       const audio = new Audio(url);
-      audio.crossOrigin = 'anonymous';
+      audio.crossOrigin = "anonymous";
       audio.volume = this.volume / 100;
-      audio.addEventListener('ended', () => {
+      audio.addEventListener("ended", () => {
         this.isPlaying = false;
-        this.currentSoundURL = '';
+        this.currentSoundURL = "";
         if (this.waitingPromise) {
           this.waitingPromise.resolve();
           this.waitingPromise = null;
@@ -242,9 +249,9 @@ class SoundPlayerPlus {
       this.playingSounds.set(url, audio);
       this.currentSoundURL = url;
       this.isPlaying = true;
-      this.errorStatus = '';
+      this.errorStatus = "";
     } catch (error) {
-      console.error('Error playing sound:', error);
+      console.error("Error playing sound:", error);
       this.errorControl();
     }
   }
@@ -253,14 +260,17 @@ class SoundPlayerPlus {
     try {
       const existingAudio = this.playingSounds.get(url);
       if (existingAudio) {
-        if (existingAudio.paused && existingAudio.currentTime < existingAudio.duration) {
+        if (
+          existingAudio.paused &&
+          existingAudio.currentTime < existingAudio.duration
+        ) {
           existingAudio.play();
           this.isPlaying = true;
           this.paused = false;
           return new Promise((resolve) => {
-            existingAudio.addEventListener('ended', () => {
+            existingAudio.addEventListener("ended", () => {
               this.isPlaying = false;
-              this.currentSoundURL = '';
+              this.currentSoundURL = "";
               resolve();
             });
             this.waitingPromise = { resolve };
@@ -272,11 +282,11 @@ class SoundPlayerPlus {
 
       const promise = new Promise((resolve) => {
         const audio = new Audio(url);
-        audio.crossOrigin = 'anonymous';
+        audio.crossOrigin = "anonymous";
         audio.volume = this.volume / 100;
-        audio.addEventListener('ended', () => {
+        audio.addEventListener("ended", () => {
           this.isPlaying = false;
-          this.currentSoundURL = '';
+          this.currentSoundURL = "";
           resolve();
         });
 
@@ -285,13 +295,13 @@ class SoundPlayerPlus {
         this.playingSounds.set(url, audio);
         this.currentSoundURL = url;
         this.isPlaying = true;
-        this.errorStatus = '';
+        this.errorStatus = "";
         this.waitingPromise = { resolve };
       });
 
       return promise;
     } catch (error) {
-      console.error('Error playing sound:', error);
+      console.error("Error playing sound:", error);
       this.errorControl();
     }
   }
@@ -303,9 +313,9 @@ class SoundPlayerPlus {
         audio.currentTime = 0;
       });
       this.playingSounds.clear();
-      this.currentSoundURL = '';
+      this.currentSoundURL = "";
       this.isPlaying = false;
-      this.errorStatus = '';
+      this.errorStatus = "";
       if (this.waitingPromise) {
         this.waitingPromise.resolve();
         this.waitingPromise = null;
@@ -375,56 +385,54 @@ class SoundPlayerPlus {
 
   errorControl() {
     this.isPlaying = false;
-    this.currentSoundURL = '';
-    this.errorStatus = 'Error';
+    this.currentSoundURL = "";
+    this.errorStatus = "Error";
     if (this.waitingPromise) {
       this.waitingPromise.resolve();
       this.waitingPromise = null;
     }
   }
-  
+
   enableMediaControls({ ENABLED }) {
-		const enabledValue = String(ENABLED).toLowerCase() === 'true';
-		this.mediaControlsEnabled = enabledValue;
+    const enabledValue = String(ENABLED).toLowerCase() === "true";
+    this.mediaControlsEnabled = enabledValue;
 
-		const mediaSession = navigator.mediaSession;
-		if (!mediaSession) return;
+    const mediaSession = navigator.mediaSession;
+    if (!mediaSession) return;
 
-		if (enabledValue) {
-			mediaSession.setActionHandler('play', () => this.resumeSound());
-			mediaSession.setActionHandler('pause', () => this.pauseSound());
-			mediaSession.setActionHandler('nexttrack', () => {
-			this.nextMediaRequested = true;
-			setTimeout(() => {
-				this.nextMediaRequested = false;
-			}, 100);
-			});
-			mediaSession.setActionHandler('previoustrack', () => {
-			this.previousMediaRequested = true;
-			setTimeout(() => {
-				this.previousMediaRequested = false;
-			}, 100);
-			});
-		} else {
-			mediaSession.setActionHandler('play', null);
-			mediaSession.setActionHandler('pause', null);
-			mediaSession.setActionHandler('nexttrack', null);
-			mediaSession.setActionHandler('previoustrack', null);
-		}
-	}
+    if (enabledValue) {
+      mediaSession.setActionHandler("play", () => this.resumeSound());
+      mediaSession.setActionHandler("pause", () => this.pauseSound());
+      mediaSession.setActionHandler("nexttrack", () => {
+        this.nextMediaRequested = true;
+        setTimeout(() => {
+          this.nextMediaRequested = false;
+        }, 100);
+      });
+      mediaSession.setActionHandler("previoustrack", () => {
+        this.previousMediaRequested = true;
+        setTimeout(() => {
+          this.previousMediaRequested = false;
+        }, 100);
+      });
+    } else {
+      mediaSession.setActionHandler("play", null);
+      mediaSession.setActionHandler("pause", null);
+      mediaSession.setActionHandler("nexttrack", null);
+      mediaSession.setActionHandler("previoustrack", null);
+    }
+  }
 
-  setMediaImage(args) {
-    const { IMAGE, TITLE, ARTIST, DESCRIPTION } = args;
+  setMediaSession(args) {
+    const { IMAGE, TITLE, ARTIST, ALBUM } = args;
     const mediaSession = navigator.mediaSession;
 
     if (mediaSession) {
       mediaSession.metadata = new MediaMetadata({
         title: TITLE,
         artist: ARTIST,
-        album: DESCRIPTION,
-        artwork: [
-          { src: IMAGE, sizes: '512x512', type: 'image/png' }
-        ]
+        album: ALBUM,
+        artwork: [{ src: IMAGE, sizes: "512x512", type: "image/png" }],
       });
     }
   }
@@ -436,21 +444,21 @@ class SoundPlayerPlus {
   isPreviousMediaRequested() {
     return this.previousMediaRequested;
   }
- 
+
   isAudioFile(args) {
     const url = args.URL;
     return new Promise((resolve, reject) => {
-      fetch(url, { method: 'HEAD' })
-        .then(response => {
-          const contentType = response.headers.get('content-type');
-          resolve(contentType && contentType.startsWith('audio/'));
+      fetch(url, { method: "HEAD" })
+        .then((response) => {
+          const contentType = response.headers.get("content-type");
+          resolve(contentType && contentType.startsWith("audio/"));
         })
         .catch(() => {
           resolve(false);
         });
     });
   }
-  
+
   getBassLevel() {
     if (!this.analyser || !this.frequencyData) return 0;
 
@@ -464,10 +472,11 @@ class SoundPlayerPlus {
 
     return Math.round(sum / bassBins);
   }
-  
+
   setupAnalyser(audio) {
     if (!this.audioContext) {
-      this.audioContext = new (window.AudioContext || window.webkitAudioContext)();
+      this.audioContext = new (window.AudioContext ||
+        window.webkitAudioContext)();
     }
 
     if (!this.analyser) {
@@ -481,7 +490,7 @@ class SoundPlayerPlus {
     source.connect(this.analyser);
     this.analyser.connect(this.audioContext.destination);
   }
-  
+
   getChannelLevel({ channel }) {
     if (!this.analyser || !this.frequencyData) {
       return 0;
