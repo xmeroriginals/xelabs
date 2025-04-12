@@ -61,7 +61,7 @@
           background-color: #1a1a1a;
           color: #fff;
           padding: 20px;
-          padding-bottom: 115px;
+          padding-bottom: 35%;
           overflow-x: hidden;
          }
 
@@ -343,6 +343,16 @@
         .catch((err) => {
           console.error("Error ", err);
         });
+    </script>
+
+    <script>
+      function adjustBodyPadding() {
+        const footer = document.querySelector(".footer");
+        const footerHeight = footer.offsetHeight;
+        document.body.style.paddingBottom = footerHeight + 30 + "px";
+      }
+      window.addEventListener("load", adjustBodyPadding);
+      window.addEventListener("resize", adjustBodyPadding);
     </script>
 
     <footer class="footer">
