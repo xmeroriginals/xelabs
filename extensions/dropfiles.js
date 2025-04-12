@@ -44,6 +44,10 @@ class DropFiles {
           text: "clear dropped file",
         },
         {
+          blockType: "label",
+          text: "Controls",
+        },
+        {
           opcode: "isEnabled",
           blockType: Scratch.BlockType.BOOLEAN,
           text: "file drop is enabled?",
@@ -52,6 +56,10 @@ class DropFiles {
           opcode: "isDragging",
           blockType: Scratch.BlockType.BOOLEAN,
           text: "a file is being dragged?",
+        },
+        {
+          blockType: "label",
+          text: "File",
         },
         {
           opcode: "getFileContent",
