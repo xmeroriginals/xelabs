@@ -14,13 +14,13 @@
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://xmeroriginals.github.io/xelabs/">
   <meta property="og:title" content="XeLabs | Advanced Extensions">
-  <meta property="og:description" content="Explore the most innovative and advanced Scratch & TurboWarp extensions, crafted by XeLabs.">
+  <meta property="og:description" content="Explore the most innovative and advanced Scratch&TurboWarp extensions, crafted by XeLabs.">
   <meta property="og:image" content="https://xmeroriginals.github.io/xelabs/assets/XeLabsLogo.png">
 
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:url" content="https://xmeroriginals.github.io/xelabs/">
   <meta name="twitter:title" content="XeLabs | Advanced Extensions">
-  <meta name="twitter:description" content="Explore the most innovative and advanced Scratch & TurboWarp extensions, crafted by XeLabs.">
+  <meta name="twitter:description" content="Explore the most innovative and advanced Scratch&TurboWarp extensions, crafted by XeLabs.">
   <meta name="twitter:image" content="https://xmeroriginals.github.io/xelabs/assets/XeLabsLogo.png">
 
   <title>XeLabs | Advanced Extensions</title>
@@ -208,10 +208,28 @@
     .footer .nav,
     .footer {
       display: flex;
-      flex-wrap: wrap;
+      flex-wrap: center;
       justify-content: center;
-      gap: 20px;
+      gap: 15px;
     }
+	
+	.footer .divider {
+		margin: 0 20px;
+		border: 2px solid #3d3d3d;
+		height: 2px;
+		width: 100px;
+	}
+	
+	.nav {
+		color: #cfcfcf;
+	}
+	
+	.divider {
+		position: relative;
+		top: 8px;
+		border-radius: 5px;
+
+	}
 
     .footer .nav a,
     .footer a {
@@ -272,7 +290,7 @@
   </div>
 
   <script>
-    fetch('https://xmeroriginals.github.io/xelabs/extensions/extensions.json')
+    fetch('http://xmeroriginals.github.io/xelabs/get/extensions.json')
       .then(response => response.json())
       .then(plugins => {
         const container = document.getElementById('pluginContainer');
@@ -298,15 +316,15 @@
       });
   </script>
   
-  <footer class="footer">
+    <footer class="footer">
     <div class="nav">
-	  <a href="https://www.instagram.com/xmerofficial/">Instagram</a>
+      <span>Have a Question or Request? </span>
+      <a href="https://www.instagram.com/xmerofficial/">Instagram</a>
       <a href="https://scratch.mit.edu/users/XmerOriginals/">Scratch</a>
       <a href="https://mail.google.com/mail/?view=cm&fs=1&to=xmeroriginals@gmail.com&su=Hello%20dear%20XmerOriginals,">Gmail</a>
-	  <a href="https://github.com/xmeroriginals/xelabs">Source</a>
     </div>
     <div class="info">
-      XmerOriginals© | XeLabs is not affiliated with TurboWarp, Scratch, The Scratch Team, or the Scratch Foundation. *Projects that use these extensions can't be uploaded to the Scratch website.*
+      XmerOriginals© | <a href="https://github.com/xmeroriginals/xelabs">XeLabs Source Codes</a> | XeLabs is not affiliated with TurboWarp, Scratch, The Scratch Team, or the Scratch Foundation. *Projects that use these extensions can't be uploaded to the Scratch website.*
     </div>
   </footer>
 </body>
