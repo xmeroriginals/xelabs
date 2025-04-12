@@ -1,331 +1,368 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <link rel="icon" type="image/png" href="https://xmeroriginals.github.io/xelabs/assets/XeLabsLogo.png" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Discover advanced extensions developed by XeLabs. Explore tools to enhance your Scratch and TurboWarp projects with powerful, creative, and unique extensions.">
+  <head>
+    <meta charset="UTF-8" />
+    <link
+      rel="icon"
+      type="image/png"
+      href="https://xmeroriginals.github.io/xelabs/assets/XeLabsLogo.png"
+    />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Discover advanced extensions developed by XeLabs. Explore tools to enhance your Scratch and TurboWarp projects with powerful, creative, and unique extensions."
+    />
 
-  <meta name="keywords" content="XeLabs, Scratch, TurboWarp, Extensions, Plugins, XmerOriginals, Advanced Scratch Tools, Scratch Plugins, TurboWarp Extensions, coding, JavaScript">
-  <meta name="author" content="XmerOriginals">
-  <meta name="language" content="en">
-  <meta name="robots" content="index, follow">
+    <meta
+      name="keywords"
+      content="XeLabs, Scratch, TurboWarp, Extensions, Plugins, XmerOriginals, Advanced Scratch Tools, Scratch Plugins, TurboWarp Extensions, coding, JavaScript"
+    />
+    <meta name="author" content="XmerOriginals" />
+    <meta name="language" content="en" />
+    <meta name="robots" content="index, follow" />
 
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://xmeroriginals.github.io/xelabs/">
-  <meta property="og:title" content="XeLabs | Advanced Extensions">
-  <meta property="og:description" content="Explore the most innovative and advanced Scratch&TurboWarp extensions, crafted by XeLabs.">
-  <meta property="og:image" content="https://xmeroriginals.github.io/xelabs/assets/XeLabsLogo.png">
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://xmeroriginals.github.io/xelabs/" />
+    <meta property="og:title" content="XeLabs | Advanced Extensions" />
+    <meta
+      property="og:description"
+      content="Explore the most innovative and advanced Scratch&TurboWarp extensions, crafted by XeLabs."
+    />
+    <meta
+      property="og:image"
+      content="https://xmeroriginals.github.io/xelabs/assets/XeLabsLogo.png"
+    />
 
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:url" content="https://xmeroriginals.github.io/xelabs/">
-  <meta name="twitter:title" content="XeLabs | Advanced Extensions">
-  <meta name="twitter:description" content="Explore the most innovative and advanced Scratch&TurboWarp extensions, crafted by XeLabs.">
-  <meta name="twitter:image" content="https://xmeroriginals.github.io/xelabs/assets/XeLabsLogo.png">
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta
+      name="twitter:url"
+      content="https://xmeroriginals.github.io/xelabs/"
+    />
+    <meta name="twitter:title" content="XeLabs | Advanced Extensions" />
+    <meta
+      name="twitter:description"
+      content="Explore the most innovative and advanced Scratch&TurboWarp extensions, crafted by XeLabs."
+    />
+    <meta
+      name="twitter:image"
+      content="https://xmeroriginals.github.io/xelabs/assets/XeLabsLogo.png"
+    />
 
-  <title>XeLabs | Advanced Extensions</title>
-  <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    }
+    <title>XeLabs | Advanced Extensions</title>
+    <style>
+         * {
+           box-sizing: border-box;
+           margin: 0;
+           padding: 0;
+           font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+         }
 
-    body {
-      background-color: #1a1a1a;
-      color: #fff;
-      padding: 20px;
-      overflow-x: hidden;
-    }
+         body {
+           background-color: #1a1a1a;
+           color: #fff;
+           padding: 20px;
+           overflow-x: hidden;
+         }
 
-    .navbar {
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      background-color: #4444447d;
-      border-radius: 999px;
-      padding: 10px 20px;
-      margin-bottom: 40px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-	  padding-top: 10px;
-      padding-right: 20px;
-      padding-bottom: 10px;
-      padding-left: 13px;
-    }
+         .navbar {
+           position: sticky;
+           top: 0;
+           z-index: 100;
+           background-color: #4444447d;
+           border-radius: 999px;
+           padding: 10px 20px;
+           margin-bottom: 40px;
+           display: flex;
+           justify-content: space-between;
+           align-items: center;
+        padding-top: 10px;
+           padding-right: 20px;
+           padding-bottom: 10px;
+           padding-left: 13px;
+         }
 
-    .navbar .left,
-	  flex: 1 1 0%;
-      display: inline-block;
-      align-self: center;
-    .navbar .center,
-    .navbar .right {
-      display: flex;
-      align-items: center;
-	  
-    }
+         .navbar .left,
+        flex: 1 1 0%;
+           display: inline-block;
+           align-self: center;
+         .navbar .center,
+         .navbar .right {
+           display: flex;
+           align-items: center;
 
-    .navbar .center {
-      flex-grow: 1;
-      justify-content: center;
-    }
+         }
 
-    .navbar span {
-      font-size: 28px;
-      font-weight: bold;
-    }
+         .navbar .center {
+           flex-grow: 1;
+           justify-content: center;
+         }
 
-    .navbar .xe {
-      color: red;
-    }
+         .navbar span {
+           font-size: 28px;
+           font-weight: bold;
+         }
 
-    .navbar .labs {
-      color: white;
-    }
+         .navbar .xe {
+           color: red;
+         }
 
-    .navbar .logo {
-      width: 50px;
-      height: 50px;
-      border-radius: 50%;
-      overflow: hidden;
-      background-color: transparent;
-      margin-right: 10px;
-    }
+         .navbar .labs {
+           color: white;
+         }
 
-    .navbar .logo img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
+         .navbar .logo {
+           width: 50px;
+           height: 50px;
+           border-radius: 50%;
+           overflow: hidden;
+           background-color: transparent;
+           margin-right: 10px;
+         }
 
-    .navbar .right a {
-      color: white;
-      text-decoration: none;
-      font-size: 14px;
-      background-color: red;
-      padding: 8px 12px;
-      border-radius: 999px;
-      transition: background-color 0.3s;
-      margin-left: 10px;
-    }
+         .navbar .logo img {
+           width: 100%;
+           height: 100%;
+           object-fit: cover;
+         }
 
-    .navbar .right a:hover {
-      background-color: #c00;
-    }
+         .navbar .right a {
+           color: white;
+           text-decoration: none;
+           font-size: 14px;
+           background-color: red;
+           padding: 8px 12px;
+           border-radius: 999px;
+           transition: background-color 0.3s;
+           margin-left: 10px;
+         }
 
-    .library {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      gap: 20px;
-    }
+         .navbar .right a:hover {
+           background-color: #c00;
+         }
 
-    .plugin-card {
-      background-color: #1e1e1e;
-      border: 2px solid #4444447d;
-      border-radius: 20px;
-      padding: 20px;
-      position: relative;
-      transition: transform 0.3s;
-	  display: flex;
-	  flex-direction: column;
-    }
+         .library {
+           display: grid;
+           grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+           gap: 20px;
+         }
 
-    .plugin-card:hover {
-      transform: scale(1.03);
-    }
+         .plugin-card {
+           background-color: #1e1e1e;
+           border: 2px solid #4444447d;
+           border-radius: 20px;
+           padding: 20px;
+           position: relative;
+           transition: transform 0.3s;
+        display: flex;
+        flex-direction: column;
+         }
 
-    .plugin-image {
-      width: 100%;
-      height: 150px;
-      background-color: #333;
-      border-radius: 10px;
-      margin-bottom: 15px;
-    }
+         .plugin-card:hover {
+           transform: scale(1.03);
+         }
 
-    .plugin-title {
-      font-size: 20px;
-      margin-bottom: 10px;
-      text-align: center;
-    }
+         .plugin-image {
+           width: 100%;
+           height: 150px;
+           background-color: #333;
+           border-radius: 10px;
+           margin-bottom: 15px;
+         }
 
-    .plugin-desc {
-      font-size: 13px;
-      color: #bbb;
-      text-align: center;
-	  margin-bottom: 30px;
-    }
+         .plugin-title {
+           font-size: 20px;
+           margin-bottom: 10px;
+           text-align: center;
+         }
 
-    .new-tag {
-      position: absolute;
-      top: 15px;
-      right: 15px;
-      background-color: red;
-      color: white;
-      padding: 5px 10px;
-      font-size: 12px;
-      border-radius: 10px;
-      font-weight: bold;
-    }
+         .plugin-desc {
+           font-size: 13px;
+           color: #bbb;
+           text-align: center;
+        margin-bottom: 30px;
+         }
 
-    .plugin-card.new-card {
-      border-color: #ff0000;
-      box-shadow: 0 0 15px rgba(255, 0, 0, 0.5);
-    }
+         .new-tag {
+           position: absolute;
+           top: 15px;
+           right: 15px;
+           background-color: red;
+           color: white;
+           padding: 5px 10px;
+           font-size: 12px;
+           border-radius: 10px;
+           font-weight: bold;
+         }
 
-    .plugin-btn {
-      display: block;
-      margin: 15px auto 0;
-      background-color: red;
-      color: white;
-      padding: 8px 16px;
-      border: none;
-      border-radius: 999px;
-      font-size: 13px;
-      cursor: pointer;
-      text-align: center;
-      text-decoration: none;
-      transition: background-color 0.3s;
-      width: fit-content;
-	  margin-top: auto;
-    }
-	
-	.footer {
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-      background-color: #1c1c1e;
-      padding: 20px;
-      box-shadow: 0 -0.5px 99px rgba(0,0,0,0.3);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      z-index: 999;
-    }
+         .plugin-card.new-card {
+           border-color: #ff0000;
+           box-shadow: 0 0 15px rgba(255, 0, 0, 0.5);
+         }
 
-    .footer .nav,
-    .footer {
-      display: flex;
-      flex-wrap: center;
-      justify-content: center;
-      gap: 15px;
-    }
-	
-	.footer .divider {
-		margin: 0 20px;
-		border: 2px solid #3d3d3d;
-		height: 2px;
-		width: 100px;
-	}
-	
-	.nav {
-		color: #cfcfcf;
-	}
-	
-	.divider {
-		position: relative;
-		top: 8px;
-		border-radius: 5px;
+         .plugin-btn {
+           display: block;
+           margin: 15px auto 0;
+           background-color: red;
+           color: white;
+           padding: 8px 16px;
+           border: none;
+           border-radius: 999px;
+           font-size: 13px;
+           cursor: pointer;
+           text-align: center;
+           text-decoration: none;
+           transition: background-color 0.3s;
+           width: fit-content;
+        margin-top: auto;
+         }
 
-	}
+      .footer {
+           position: fixed;
+           bottom: 0;
+           left: 0;
+           width: 100%;
+           background-color: #1c1c1e;
+           padding: 20px;
+           box-shadow: 0 -0.5px 99px rgba(0,0,0,0.3);
+           display: flex;
+           flex-direction: column;
+           align-items: center;
+           z-index: 999;
+         }
 
-    .footer .nav a,
-    .footer a {
-      color: #aaa;
-      text-decoration: none;
-      transition: color 0.3s;
-    }
+         .footer .nav,
+         .footer {
+           display: flex;
+           flex-wrap: center;
+           justify-content: center;
+           gap: 15px;
+         }
 
-    .footer .nav a:hover,
-    .footer a:hover {
-      color: #fff;
-    }
+      .footer .divider {
+      	margin: 0 20px;
+      	border: 2px solid #3d3d3d;
+      	height: 2px;
+      	width: 100px;
+      }
 
-    .footer {
-      font-size: 15px;
-    }
+      .nav {
+      	color: #cfcfcf;
+      }
 
-    .footer .info {
-      font-size: 13px;
-      color: #666;
-    }
+      .divider {
+      	position: relative;
+      	top: 8px;
+      	border-radius: 5px;
 
-    .plugin-btn:hover {
-      background-color: #c00;
-    }
+      }
 
-    ::-webkit-scrollbar {
-      width: 5px;
-    }
+         .footer .nav a,
+         .footer a {
+           color: #aaa;
+           text-decoration: none;
+           transition: color 0.3s;
+         }
 
-    ::-webkit-scrollbar-track {
-      background: #1a1a1a;
-    }
+         .footer .nav a:hover,
+         .footer a:hover {
+           color: #fff;
+         }
 
-    ::-webkit-scrollbar-thumb {
-      background: red;
-	  border-radius: 5px;
-    }
-  </style>
-</head>
-<body>
-  <div class="navbar">
-    <div class="left">
-      <div class="logo">
-        <img src="https://xmeroriginals.github.io/xelabs/assets/XeLabsLogo.png" alt="Logo">
+         .footer {
+           font-size: 15px;
+         }
+
+         .footer .info {
+           font-size: 13px;
+           color: #666;
+         }
+
+         .plugin-btn:hover {
+           background-color: #c00;
+         }
+
+         ::-webkit-scrollbar {
+           width: 5px;
+         }
+
+         ::-webkit-scrollbar-track {
+           background: #1a1a1a;
+         }
+
+         ::-webkit-scrollbar-thumb {
+           background: red;
+        border-radius: 5px;
+         }
+    </style>
+  </head>
+  <body>
+    <div class="navbar">
+      <div class="left">
+        <div class="logo">
+          <img
+            src="https://xmeroriginals.github.io/xelabs/assets/XeLabsLogo.png"
+            alt="Logo"
+          />
+        </div>
+      </div>
+      <div class="center">
+        <span class="xe">Xe</span><span class="labs">Labs</span>
+      </div>
+      <div class="right">
+        <a href="https://scratch.mit.edu/users/XmerOriginals/">Scratch</a>
       </div>
     </div>
-    <div class="center">
-      <span class="xe">Xe</span><span class="labs">Labs</span>
-    </div>
-    <div class="right">
-      <a href="https://scratch.mit.edu/users/XmerOriginals/">Scratch</a>
-    </div>
-  </div>
-  
 
-  <div class="library" id="pluginContainer">
-  </div>
+    <div class="library" id="pluginContainer"></div>
 
-  <script>
-    fetch('https://xmeroriginals.github.io/xelabs/get/extensions.json')
-      .then(response => response.json())
-      .then(plugins => {
-        const container = document.getElementById('pluginContainer');
+    <script>
+      fetch("https://xmeroriginals.github.io/xelabs/get/extensions.json")
+        .then((response) => response.json())
+        .then((plugins) => {
+          const container = document.getElementById("pluginContainer");
 
-        plugins.forEach(plugin => {
-          const card = document.createElement('div');
-          card.className = 'plugin-card';
-          if (plugin.new) card.classList.add('new-card');
+          plugins.forEach((plugin) => {
+            const card = document.createElement("div");
+            card.className = "plugin-card";
+            if (plugin.new) card.classList.add("new-card");
 
-          card.innerHTML = `
-            <div class="plugin-image" style="background-image: url('${plugin.image || ''}'); background-size: cover;"></div>
+            card.innerHTML = `
+            <div class="plugin-image" style="background-image: url('${
+              plugin.image || ""
+            }'); background-size: cover;"></div>
             <div class="plugin-title">${plugin.title}</div>
             <div class="plugin-desc">${plugin.description}</div>
-            ${plugin.new ? '<div class="new-tag">NEW</div>' : ''}
+            ${plugin.new ? '<div class="new-tag">NEW</div>' : ""}
             <a class="plugin-btn" href="${plugin.link}" target="_blank">Code</a>
           `;
 
-          container.appendChild(card);
+            container.appendChild(card);
+          });
+        })
+        .catch((err) => {
+          console.error("Error ", err);
         });
-      })
-      .catch(err => {
-        console.error('Error ', err);
-      });
-  </script>
-  
+    </script>
+
     <footer class="footer">
-    <div class="nav">
-      <span>Have a Question or Request? </span>
-      <a href="https://www.instagram.com/xmerofficial/">Instagram</a>
-      <a href="https://scratch.mit.edu/users/XmerOriginals/">Scratch</a>
-      <a href="https://mail.google.com/mail/?view=cm&fs=1&to=xmeroriginals@gmail.com&su=Hello%20dear%20XmerOriginals,">Gmail</a>
-    </div>
-    <div class="info">
-      XmerOriginals© | <a href="https://github.com/xmeroriginals/xelabs">XeLabs Source Codes</a> | XeLabs is not affiliated with TurboWarp, Scratch, The Scratch Team, or the Scratch Foundation. *Projects that use these extensions can't be uploaded to the Scratch website.*
-    </div>
-  </footer>
-</body>
+      <div class="nav">
+        <span>Have a Question or Request? </span>
+        <a href="https://www.instagram.com/xmerofficial/">Instagram</a>
+        <a href="https://scratch.mit.edu/users/XmerOriginals/">Scratch</a>
+        <a
+          href="https://mail.google.com/mail/?view=cm&fs=1&to=xmeroriginals@gmail.com&su=Hello%20dear%20XmerOriginals,"
+          >Gmail</a
+        >
+      </div>
+      <div class="info">
+        XmerOriginals© |
+        <a href="https://github.com/xmeroriginals/xelabs"
+          >XeLabs Source Codes</a
+        >
+        | XeLabs is not affiliated with TurboWarp, Scratch, The Scratch Team, or
+        the Scratch Foundation. *Projects that use these extensions can't be
+        uploaded to the Scratch website.*
+      </div>
+    </footer>
+  </body>
 </html>
