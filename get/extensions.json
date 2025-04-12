@@ -7,6 +7,13 @@
     "new": true
   },
   {
+    "title": "Drop Files",
+    "description": "Manage Files Dragged and Dropped on Top of Your Standalone Project from the File Manager.",
+    "image": "https://xmeroriginals.github.io/xelabs/assets/extensions-images/dropfiles.png",
+    "link": "https://xmeroriginals.github.io/xelabs/extensions/dropfiles.js",
+    "new": true
+  },
+  {
     "title": "Sweet Alert",
     "description": "It allows you to send modern alerts using the Sweet Alert library.",
     "image": "https://xmeroriginals.github.io/xelabs/assets/extensions-images/sweetalert.svg",
