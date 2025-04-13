@@ -14,6 +14,13 @@
     "new": true
   },
   {
+    "title": "Multi File+",
+    "description": "Quickly Process Multiple Selected Files.",
+    "image": "https://xmeroriginals.github.io/xelabs/assets/extensions-images/multifileplus.png",
+    "link": "https://xmeroriginals.github.io/xelabs/extensions/multifileplus.js",
+    "new": true
+  },
+  {
     "title": "Sweet Alert",
     "description": "It allows you to send modern alerts using the Sweet Alert library.",
     "image": "https://xmeroriginals.github.io/xelabs/assets/extensions-images/sweetalert.svg",
