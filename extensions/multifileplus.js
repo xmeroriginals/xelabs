@@ -1,3 +1,8 @@
+// Name: Multi File+
+// ID: multifileplus
+// Description: Quickly Process Multiple Selected Files.
+// License: MPL-2.0
+
 class MultiFileSelector {
   constructor(runtime) {
     this.runtime = runtime;
