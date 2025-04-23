@@ -4,7 +4,7 @@
     "description": "Best way to launch audio from URL or data uri's. 10 channels and bass levels for your equalizer. Apart from basic functions like audio file control; control device media playback, check if next or previous media is clicked, set image, title, description. Get full control over stop/start on your Project in Device Media Session.",
     "image": "https://xmeroriginals.github.io/xelabs/assets/extensions-images/soundplayerplus.png",
     "link": "https://xmeroriginals.github.io/xelabs/extensions/soundplayerplus.js",
-    "new": true,
+    "new": false,
     "update": true
   },
   {
@@ -28,7 +28,7 @@
     "description": "It allows you to send modern alerts using the Sweet Alert library.",
     "image": "https://xmeroriginals.github.io/xelabs/assets/extensions-images/sweetalert.svg",
     "link": "https://xmeroriginals.github.io/xelabs/extensions/sweetalert.js",
-    "new": true
+    "new": false,
     "update": false
   },
   {
@@ -44,7 +44,7 @@
     "description": "Take keyboard input from the user as if they were typing in a text box and perform multiple checks by distinguishing what is typed in one text box from another with the ID. Original by silly software",
     "image": "https://xmeroriginals.github.io/xelabs/assets/extensions-images/keyboardplus.png",
     "link": "https://xmeroriginals.github.io/xelabs/extensions/keyboardplus.js",
-    "new": true,
+    "new": false,
     "update": false
   }
 ]
