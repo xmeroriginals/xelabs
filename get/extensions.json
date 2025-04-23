@@ -4,21 +4,24 @@
     "description": "Best way to launch audio from URL or data uri's. 10 channels and bass levels for your equalizer. Apart from basic functions like audio file control; control device media playback, check if next or previous media is clicked, set image, title, description. Get full control over stop/start on your Project in Device Media Session.",
     "image": "https://xmeroriginals.github.io/xelabs/assets/extensions-images/soundplayerplus.png",
     "link": "https://xmeroriginals.github.io/xelabs/extensions/soundplayerplus.js",
-    "new": true
+    "new": true,
+    "update": true
   },
   {
     "title": "Drop Files",
     "description": "Manage Files Dragged and Dropped on Top of Your Standalone Project from the File Manager.",
     "image": "https://xmeroriginals.github.io/xelabs/assets/extensions-images/dropfiles.png",
     "link": "https://xmeroriginals.github.io/xelabs/extensions/dropfiles.js",
-    "new": true
+    "new": true,
+    "update": false
   },
   {
     "title": "Multi File+",
     "description": "Quickly Process Multiple Selected Files.",
     "image": "https://xmeroriginals.github.io/xelabs/assets/extensions-images/multifileplus.png",
     "link": "https://xmeroriginals.github.io/xelabs/extensions/multifileplus.js",
-    "new": true
+    "new": true,
+    "update": false
   },
   {
     "title": "Sweet Alert",
@@ -26,19 +29,22 @@
     "image": "https://xmeroriginals.github.io/xelabs/assets/extensions-images/sweetalert.svg",
     "link": "https://xmeroriginals.github.io/xelabs/extensions/sweetalert.js",
     "new": true
+    "update": false
   },
   {
     "title": "Birthday",
     "description": "It allows you to quickly and easily calculate birthdays and start birthday celebration festivities in an optimized way. It also returns the next birthday if it is not due.",
     "image": "https://xmeroriginals.github.io/xelabs/assets/extensions-images/birthday.png",
     "link": "https://xmeroriginals.github.io/xelabs/extensions/birthday.js",
-    "new": true
+    "new": true,
+    "update": false
   },
   {
     "title": "Keyboard+",
     "description": "Take keyboard input from the user as if they were typing in a text box and perform multiple checks by distinguishing what is typed in one text box from another with the ID. Original by silly software",
     "image": "https://xmeroriginals.github.io/xelabs/assets/extensions-images/keyboardplus.png",
     "link": "https://xmeroriginals.github.io/xelabs/extensions/keyboardplus.js",
-    "new": true
+    "new": true,
+    "update": false
   }
 ]
