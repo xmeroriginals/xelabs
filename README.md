@@ -1,2 +1,2 @@
 # XeLabs
-XeLabs -  Advanced TurboWarp Extensions
+XeLabs -  TurboWarp Extensions
