@@ -15,7 +15,7 @@
 
     <meta
       name="keywords"
-      content="XeLabs, Scratch, TurboWarp, Extensions, Plugins, XmerOriginals, Scratch Tools, Scratch Plugins, TurboWarp Extensions, coding, JavaScript"
+      content="XeLabs, Scratch, TurboWarp, Extensions, Plugins, XmerOriginals, Advanced Scratch Tools, Scratch Plugins, TurboWarp Extensions, coding, JavaScript"
     />
     <meta name="author" content="XmerOriginals" />
     <meta name="language" content="en" />
@@ -23,7 +23,7 @@
 
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://xmeroriginals.github.io/xelabs/" />
-    <meta property="og:title" content="XeLabs | Extension Gallery" />
+    <meta property="og:title" content="XeLabs | Advanced Extensions" />
     <meta
       property="og:description"
       content="Explore the most innovative and advanced Scratch&TurboWarp extensions, crafted by XeLabs."
@@ -38,7 +38,7 @@
       name="twitter:url"
       content="https://xmeroriginals.github.io/xelabs/"
     />
-    <meta name="twitter:title" content="XeLabs | Gallery Extensions" />
+    <meta name="twitter:title" content="XeLabs | Advanced Extensions" />
     <meta
       name="twitter:description"
       content="Explore the most innovative and advanced Scratch&TurboWarp extensions, crafted by XeLabs."
@@ -48,7 +48,7 @@
       content="https://xmeroriginals.github.io/xelabs/assets/XeLabsLogo.png"
     />
 
-    <title>XeLabs | Extension Gallery</title>
+    <title>XeLabs | Advanced Extensions</title>
     <style>
          * {
            box-sizing: border-box;
@@ -83,7 +83,7 @@
          }
 
          .navbar .left,
-        flex: 1 1 0%;
+           flex: 1 1 0%;
            display: inline-block;
            align-self: center;
          .navbar .center,
@@ -199,6 +199,10 @@
            border-color: #ff0000;
            box-shadow: 0 0 15px rgba(255, 0, 0, 0.5);
          }
+         .plugin-card.update-card {
+          border-color: #007bff;
+          box-shadow: 0 0 15px rgba(0, 123, 255, 0.6);
+         }
 
          .plugin-btn {
            display: block;
@@ -249,6 +253,20 @@
       .nav {
       	color: #cfcfcf;
       }
+
+      .update-tag {
+        position: absolute;
+        top: 15px;
+        right: 15px;
+        background-color: #007bff;
+        color: white;
+        padding: 5px 10px;
+        font-size: 12px;
+        border-radius: 10px;
+        font-weight: bold;
+        box-shadow: 0 0 15px rgba(0, 123, 255, 0.6);
+      }
+
 
       .divider {
       	position: relative;
@@ -325,17 +343,25 @@
           plugins.forEach((plugin) => {
             const card = document.createElement("div");
             card.className = "plugin-card";
-            if (plugin.new) card.classList.add("new-card");
+
+            let tagHTML = "";
+            if (plugin.new) {
+              card.classList.add("new-card");
+              tagHTML = '<div class="new-tag">NEW</div>';
+            } else if (plugin.update) {
+              card.classList.add("update-card");
+              tagHTML = '<div class="update-tag">UPDATE</div>';
+            }
 
             card.innerHTML = `
-            <div class="plugin-image" style="background-image: url('${
-              plugin.image || ""
-            }'); background-size: cover;"></div>
-            <div class="plugin-title">${plugin.title}</div>
-            <div class="plugin-desc">${plugin.description}</div>
-            ${plugin.new ? '<div class="new-tag">NEW</div>' : ""}
-            <a class="plugin-btn" href="${plugin.link}" target="_blank">Code</a>
-          `;
+        <div class="plugin-image" style="background-image: url('${
+          plugin.image || ""
+        }'); background-size: cover;"></div>
+        <div class="plugin-title">${plugin.title}</div>
+        <div class="plugin-desc">${plugin.description}</div>
+        ${tagHTML}
+        <a class="plugin-btn" href="${plugin.link}" target="_blank">Code</a>
+      `;
 
             container.appendChild(card);
           });
