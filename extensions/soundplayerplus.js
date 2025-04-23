@@ -2,8 +2,9 @@
 // ID: soundplayerplus
 // Description: Best way to launch audio from URL or data uri's. 10 channels and bass levels for your equalizer. Apart from basic functions like audio file control; control device media playback, check if next or previous media is clicked, set image, title, description. Get full control over stop/start on your Project in Device Media Session.
 // License: MPL-2.0
+// v2
 
-class SoundPlayerPlus {
+class SoundPlayerPlusv2 {
   constructor() {
     this.playingSounds = new Map();
     this.currentSoundURL = "";
@@ -20,11 +21,12 @@ class SoundPlayerPlus {
     this.nextMediaRequested = false;
     this.previousMediaRequested = false;
     this.mediaControlsEnabled = false;
+    this.allAudios = [];
   }
 
   getInfo() {
     return {
-      id: "soundplayerplus",
+      id: "soundplayerplusv2",
       name: "Sound Player+",
       color1: "#fc760a",
       blocks: [
@@ -56,6 +58,11 @@ class SoundPlayerPlus {
           opcode: "stopSound",
           blockType: Scratch.BlockType.COMMAND,
           text: "stop sound",
+        },
+        {
+          opcode: "stopAllSounds",
+          blockType: Scratch.BlockType.COMMAND,
+          text: "stop all sound",
         },
         {
           opcode: "pauseSound",
@@ -216,6 +223,7 @@ class SoundPlayerPlus {
   }
 
   async playSound({ url }) {
+    this.stopSound();
     try {
       const existingAudio = this.playingSounds.get(url);
       if (existingAudio) {
@@ -223,7 +231,7 @@ class SoundPlayerPlus {
           existingAudio.paused &&
           existingAudio.currentTime < existingAudio.duration
         ) {
-          existingAudio.play();
+          await existingAudio.play();
           this.isPlaying = true;
           this.paused = false;
           return;
@@ -232,8 +240,14 @@ class SoundPlayerPlus {
         this.stopSound();
       }
 
-      const audio = new Audio(url);
-      audio.crossOrigin = "anonymous";
+      const audio = new Audio();
+      audio.src = url;
+      audio.preload = "auto";
+
+      if (url.startsWith("https://")) {
+        audio.crossOrigin = "anonymous";
+      }
+
       audio.volume = this.volume / 100;
       audio.addEventListener("ended", () => {
         this.isPlaying = false;
@@ -245,11 +259,15 @@ class SoundPlayerPlus {
       });
 
       this.setupAnalyser(audio);
-      audio.play();
+      this.allAudios.push(audio);
+
+      await audio.play();
+
       this.playingSounds.set(url, audio);
       this.currentSoundURL = url;
       this.isPlaying = true;
       this.errorStatus = "";
+
     } catch (error) {
       console.error("Error playing sound:", error);
       this.errorControl();
@@ -257,6 +275,7 @@ class SoundPlayerPlus {
   }
 
   async playSoundAndWait({ url }) {
+    this.stopSound();
     try {
       const existingAudio = this.playingSounds.get(url);
       if (existingAudio) {
@@ -264,9 +283,10 @@ class SoundPlayerPlus {
           existingAudio.paused &&
           existingAudio.currentTime < existingAudio.duration
         ) {
-          existingAudio.play();
+          await existingAudio.play();
           this.isPlaying = true;
           this.paused = false;
+
           return new Promise((resolve) => {
             existingAudio.addEventListener("ended", () => {
               this.isPlaying = false;
@@ -280,10 +300,17 @@ class SoundPlayerPlus {
         this.stopSound();
       }
 
-      const promise = new Promise((resolve) => {
-        const audio = new Audio(url);
-        audio.crossOrigin = "anonymous";
+      return new Promise(async (resolve) => {
+        const audio = new Audio();
+        audio.src = url;
+        audio.preload = "auto";
+
+        if (url.startsWith("https://")) {
+          audio.crossOrigin = "anonymous";
+        }
+
         audio.volume = this.volume / 100;
+
         audio.addEventListener("ended", () => {
           this.isPlaying = false;
           this.currentSoundURL = "";
@@ -291,7 +318,10 @@ class SoundPlayerPlus {
         });
 
         this.setupAnalyser(audio);
-        audio.play();
+        this.allAudios.push(audio);
+
+        await audio.play();
+
         this.playingSounds.set(url, audio);
         this.currentSoundURL = url;
         this.isPlaying = true;
@@ -299,12 +329,12 @@ class SoundPlayerPlus {
         this.waitingPromise = { resolve };
       });
 
-      return promise;
     } catch (error) {
       console.error("Error playing sound:", error);
       this.errorControl();
     }
   }
+
 
   stopSound() {
     if (this.playingSounds.size > 0) {
@@ -320,6 +350,30 @@ class SoundPlayerPlus {
         this.waitingPromise.resolve();
         this.waitingPromise = null;
       }
+    }
+  }
+
+  stopAllSounds() {
+    this.allAudios.forEach(audio => {
+      try {
+        audio.pause();
+        audio.currentTime = 0;
+      } catch (e) {
+        console.warn("Audio stop failed:", e);
+      }
+    });
+
+    this.allAudios = [];
+    this.playingSounds.clear();
+    this.currentSoundURL = "";
+    this.isPlaying = false;
+    this.paused = false;
+    this.pausedTime = 0;
+    this.errorStatus = "";
+
+    if (this.waitingPromise) {
+      this.waitingPromise.resolve();
+      this.waitingPromise = null;
     }
   }
 
@@ -513,4 +567,4 @@ class SoundPlayerPlus {
   }
 }
 
-Scratch.extensions.register(new SoundPlayerPlus());
+Scratch.extensions.register(new SoundPlayerPlusv2());
