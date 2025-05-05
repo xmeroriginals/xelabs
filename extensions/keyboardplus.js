@@ -1,4 +1,5 @@
 // Name: KeyboardPlus
+// Image: ./assets/extensions-images/keyboardplus.png
 // ID: keyboardplus
 // Description: Take keyboard input from the user as if they were typing in a text box and perform multiple checks by distinguishing what is typed in one text box from another with the ID.
 // Original Extension by: silly software https://sillysoftware.lol/
