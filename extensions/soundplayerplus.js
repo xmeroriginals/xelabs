@@ -1,4 +1,5 @@
 // Name: Sound Player+
+// Image: ./assets/extensions-images/soundplayerplus.png
 // ID: soundplayerplus
 // Description: Best way to launch audio from URL or data uri's. 10 channels and bass levels for your equalizer. Apart from basic functions like audio file control; control device media playback, check if next or previous media is clicked, set image, title, description. Get full control over stop/start on your Project in Device Media Session.
 // License: MPL-2.0
