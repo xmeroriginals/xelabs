@@ -1,7 +1,8 @@
 // Name: Sweet Alert
 // Image: ./assets/extensions-images/sweetalert.svg
 // ID: sweetalert
-// Description: It allows you to send modern alerts using the Sweet Alert library ** Library line 135 https://cdn.jsdelivr.net/npm/sweetalert2@11 **
+// Description: It allows you to send modern alerts using the Sweet Alert Library
+// Original Library: https://cdn.jsdelivr.net/npm/sweetalert2@11
 // License: MPL-2.0
 
 (function (Scratch) {
