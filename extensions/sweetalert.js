@@ -1,5 +1,5 @@
 // Name: Sweet Alert
-// Image: ./assets/extensions-images/sweetalert.svg
+// Image: ./assets/extensions-images/sweetalert.png
 // Update: true
 // ID: sweetalertv2
 // Description: It allows you to send modern alerts using the Sweet Alert Library.
