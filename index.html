@@ -30,7 +30,7 @@
     />
     <meta
       property="og:image"
-      content="https://xmeroriginals.github.io/xelabs/assets/XeLabsLogo.png"
+      content="https://xmeroriginals.github.io/xelabs/assets/XeLabsLogoSquare.png"
     />
 
     <meta name="twitter:card" content="summary_large_image" />
@@ -45,7 +45,7 @@
     />
     <meta
       name="twitter:image"
-      content="https://xmeroriginals.github.io/xelabs/assets/XeLabsLogo.png"
+      content="https://xmeroriginals.github.io/xelabs/assets/XeLabsLogoSquare.png"
     />
 
     <title>XeLabs | Extensions Gallery</title>
@@ -156,7 +156,15 @@
            transition: transform 0.3s;
            display: flex;
            flex-direction: column;
+           opacity: 0;
+           transform: translateY(10px);
+           transition: opacity 0.5s ease, transform 0.5s ease;
          }
+
+         .plugin-card.fade-in {
+           opacity: 1;
+           transform: translateY(0);
+          }
 
          .plugin-card:hover {
            transform: scale(1.03);
@@ -399,6 +407,9 @@
         `;
 
               container.appendChild(card);
+              setTimeout(() => {
+                card.classList.add("fade-in");
+              }, 50);
             } catch (err) {
               console.error("Failed to load plugin file:", file, err);
             }
