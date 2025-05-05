@@ -350,42 +350,52 @@
         .then(async (files) => {
           const container = document.getElementById("pluginContainer");
 
-          for (const file of files) {
-            try {
-              const res = await fetch(file);
-              const text = await res.text();
-              const lines = text
-                .split("\n")
-                .filter((line) => line.trim().startsWith("//"));
+          const pluginDataList = await Promise.all(
+            files.map(async (file) => {
+              try {
+                const res = await fetch(file);
+                const text = await res.text();
+                const lines = text
+                  .split("\n")
+                  .filter((line) => line.trim().startsWith("//"));
 
-              let plugin = {
-                name: "Undefined",
-                description: "Undefined",
-                image: fallbackImage,
-                link: file,
-                new: false,
-                update: false,
-              };
+                let plugin = {
+                  name: "Undefined",
+                  description: "Undefined",
+                  image: fallbackImage,
+                  link: file,
+                  new: false,
+                  update: false,
+                };
 
-              lines.forEach((line) => {
-                const content = line.replace("//", "").trim();
+                lines.forEach((line) => {
+                  const content = line.replace("//", "").trim();
+                  if (content.startsWith("Name:")) {
+                    plugin.name = content.replace("Name:", "").trim();
+                  } else if (content.startsWith("Description:")) {
+                    plugin.description = content
+                      .replace("Description:", "")
+                      .trim();
+                  } else if (content.toLowerCase().includes("new")) {
+                    plugin.new = true;
+                  } else if (content.toLowerCase().includes("update")) {
+                    plugin.update = true;
+                  } else if (content.startsWith("Image:")) {
+                    const img = content.replace("Image:", "").trim();
+                    if (img) plugin.image = img;
+                  }
+                });
 
-                if (content.startsWith("Name:")) {
-                  plugin.name = content.replace("Name:", "").trim();
-                } else if (content.startsWith("Description:")) {
-                  plugin.description = content
-                    .replace("Description:", "")
-                    .trim();
-                } else if (content.toLowerCase().includes("new")) {
-                  plugin.new = true;
-                } else if (content.toLowerCase().includes("update")) {
-                  plugin.update = true;
-                } else if (content.startsWith("Image:")) {
-                  const img = content.replace("Image:", "").trim();
-                  if (img) plugin.image = img;
-                }
-              });
+                return plugin;
+              } catch (err) {
+                console.error("Failed to load plugin:", file, err);
+                return null;
+              }
+            })
+          );
 
+          pluginDataList.filter(Boolean).forEach((plugin, index) => {
+            setTimeout(() => {
               const card = document.createElement("div");
               card.className = "plugin-card";
 
@@ -399,21 +409,19 @@
               }
 
               card.innerHTML = `
-          <div class="plugin-image" style="background-image: url('${plugin.image}'); background-size: cover;"></div>
-          <div class="plugin-title">${plugin.name}</div>
-          <div class="plugin-desc">${plugin.description}</div>
-          ${tagHTML}
-          <a class="plugin-btn" href="${plugin.link}" target="_blank">Code</a>
-        `;
+            <div class="plugin-image" style="background-image: url('${plugin.image}'); background-size: cover;"></div>
+            <div class="plugin-title">${plugin.name}</div>
+            <div class="plugin-desc">${plugin.description}</div>
+            ${tagHTML}
+            <a class="plugin-btn" href="${plugin.link}" target="_blank">Code</a>
+          `;
 
               container.appendChild(card);
               setTimeout(() => {
                 card.classList.add("fade-in");
               }, 50);
-            } catch (err) {
-              console.error("Failed to load plugin file:", file, err);
-            }
-          }
+            }, index * 100);
+          });
         })
         .catch((err) => {
           console.error("Error loading extensions.json:", err);
