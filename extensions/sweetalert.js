@@ -2,7 +2,7 @@
 // Image: ./assets/extensions-images/sweetalert.png
 // Update: true
 // ID: sweetalertv2
-// Description: It allows you to send modern alerts using the Sweet Alert Library.
+// Description: It allows you to send modern customizable alerts using the Sweet Alert Library.
 // Library: https://cdn.jsdelivr.net/npm/sweetalert2@11
 // License: MPL-2.0
 // v2
