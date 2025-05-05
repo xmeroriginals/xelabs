@@ -335,39 +335,77 @@
     <div class="library" id="pluginContainer"></div>
 
     <script>
-      fetch("https://xmeroriginals.github.io/xelabs/get/extensions.json")
+      const fallbackImage = "./assets/extensions-images/picturefail.png";
+
+      fetch("./get/extensions.json")
         .then((response) => response.json())
-        .then((plugins) => {
+        .then(async (files) => {
           const container = document.getElementById("pluginContainer");
 
-          plugins.forEach((plugin) => {
-            const card = document.createElement("div");
-            card.className = "plugin-card";
+          for (const file of files) {
+            try {
+              const res = await fetch(file);
+              const text = await res.text();
+              const lines = text
+                .split("\n")
+                .filter((line) => line.trim().startsWith("//"));
 
-            let tagHTML = "";
-            if (plugin.new) {
-              card.classList.add("new-card");
-              tagHTML = '<div class="new-tag">NEW</div>';
-            } else if (plugin.update) {
-              card.classList.add("update-card");
-              tagHTML = '<div class="update-tag">UPDATE</div>';
+              let plugin = {
+                name: "Undefined",
+                description: "Undefined",
+                image: fallbackImage,
+                link: file,
+                new: false,
+                update: false,
+              };
+
+              lines.forEach((line) => {
+                const content = line.replace("//", "").trim();
+
+                if (content.startsWith("Name:")) {
+                  plugin.name = content.replace("Name:", "").trim();
+                } else if (content.startsWith("Description:")) {
+                  plugin.description = content
+                    .replace("Description:", "")
+                    .trim();
+                } else if (content.toLowerCase().includes("new")) {
+                  plugin.new = true;
+                } else if (content.toLowerCase().includes("update")) {
+                  plugin.update = true;
+                } else if (content.startsWith("Image:")) {
+                  const img = content.replace("Image:", "").trim();
+                  if (img) plugin.image = img;
+                }
+              });
+
+              const card = document.createElement("div");
+              card.className = "plugin-card";
+
+              let tagHTML = "";
+              if (plugin.new) {
+                card.classList.add("new-card");
+                tagHTML = '<div class="new-tag">NEW</div>';
+              } else if (plugin.update) {
+                card.classList.add("update-card");
+                tagHTML = '<div class="update-tag">UPDATE</div>';
+              }
+
+              card.innerHTML = `
+          <div class="plugin-image" style="background-image: url('${plugin.image}'); background-size: cover;"></div>
+          <div class="plugin-title">${plugin.name}</div>
+          <div class="plugin-desc">${plugin.description}</div>
+          ${tagHTML}
+          <a class="plugin-btn" href="${plugin.link}" target="_blank">Code</a>
+        `;
+
+              container.appendChild(card);
+            } catch (err) {
+              console.error("Failed to load plugin file:", file, err);
             }
-
-            card.innerHTML = `
-        <div class="plugin-image" style="background-image: url('${
-          plugin.image || ""
-        }'); background-size: cover;"></div>
-        <div class="plugin-title">${plugin.title}</div>
-        <div class="plugin-desc">${plugin.description}</div>
-        ${tagHTML}
-        <a class="plugin-btn" href="${plugin.link}" target="_blank">Code</a>
-      `;
-
-            container.appendChild(card);
-          });
+          }
         })
         .catch((err) => {
-          console.error("Error ", err);
+          console.error("Error loading extensions.json:", err);
         });
     </script>
 
