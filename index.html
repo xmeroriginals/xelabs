@@ -349,13 +349,13 @@
         types: [
           {
             type: "info",
-            background: "#00b3ff",
+            background: "#2e2e2e",
             icon: false,
             dismissible: true,
           },
           {
-            type: "success",
-            background: "#28a745",
+            type: "error",
+            background: "#ff0000",
             icon: false,
             dismissible: true,
           },
@@ -469,12 +469,14 @@
                     const code = await response.text();
                     await navigator.clipboard.writeText(code);
                     notyf.open({
-                      type: "success",
+                      type: "info",
                       message: "Code copied to clipboard.",
                     });
                   } catch (error) {
-                    console.error("Failed to copy code:", error);
-                    notyf.error("Failed to copy code.");
+                    notyf.open({
+                      type: "error",
+                      message: "Failed to copy code.",
+                    });
                   }
                 });
 
