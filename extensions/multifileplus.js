@@ -1,5 +1,6 @@
 // Name: Multi File+
 // Image: ./assets/extensions-images/multifileplus.png
+// Author: XmerOriginals
 // ID: multifileplus
 // Description: Quickly Process Multiple Selected Files.
 // License: MPL-2.0
