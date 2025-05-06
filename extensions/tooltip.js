@@ -1,6 +1,7 @@
 // Name: Tooltip
 // Image: ./assets/extensions-images/tooltip.png
 // New: true
+// Author: XmerOriginals
 // ID: tooltip
 // Description: It allows you to call customizable Tooltips that will simply follow the cursor in your project.
 // License: MPL-2.0
