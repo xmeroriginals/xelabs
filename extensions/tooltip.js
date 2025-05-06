@@ -99,10 +99,6 @@
                 color1: '#5b5ffc',
                 blocks: [
                     {
-                        blockType: "label",
-                        text: "Control",
-                    },
-                    {
                         opcode: 'showTooltipText',
                         blockType: Scratch.BlockType.COMMAND,
                         text: 'show tooltip [TEXT] at [POSITION]',
@@ -231,8 +227,8 @@
                     animationTypeMenu: {
                         acceptReporters: true,
                         items: [
-                            { text: 'Fade In/Out', value: 'fade' },
-                            { text: 'Mouse Follow Speed', value: 'move' },
+                            { text: 'fade in/out', value: 'fade' },
+                            { text: 'move Speed', value: 'move' },
                         ]
                     }
                 }
