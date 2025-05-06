@@ -1,6 +1,7 @@
 // Name: Drop Files
 // Image: ./assets/extensions-images/dropfiles.png
 // ID: filedrop
+// Author: XmerOriginals
 // Description: Manage Files Dragged and Dropped on Top of Your Standalone Project from the File Manager.
 // License: MPL-2.0
 
