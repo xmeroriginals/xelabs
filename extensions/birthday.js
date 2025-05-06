@@ -1,5 +1,6 @@
 // Name: Birthday
 // Image: ./assets/extensions-images/birthday.png
+// Author: XmerOriginals
 // ID: birthday
 // Description: It allows you to quickly and easily calculate birthdays and start birthday celebration festivities in an optimized way. It also returns the next birthday if it is not due.
 // License: MPL-2.0
