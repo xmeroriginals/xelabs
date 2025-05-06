@@ -12,7 +12,6 @@
       name="description"
       content="Discover advanced extensions developed by XeLabs. Explore tools to enhance your Scratch and TurboWarp projects with powerful, creative, and unique extensions."
     />
-
     <meta
       name="keywords"
       content="XeLabs, Scratch, TurboWarp, Extensions, Plugins, XmerOriginals, Advanced Scratch Tools, Scratch Plugins, TurboWarp Extensions, coding, JavaScript"
@@ -49,219 +48,185 @@
     />
 
     <title>XeLabs | Extensions Gallery</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.css"
+    />
     <style>
-         * {
-           box-sizing: border-box;
-           margin: 0;
-           padding: 0;
-           font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-         }
-
-         body {
-          background-color: #1a1a1a;
-          color: #fff;
-          padding: 20px;
-          padding-bottom: 35%;
-          overflow-x: hidden;
-         }
-
-         .navbar {
-           position: sticky;
-           top: 0;
-           z-index: 100;
-           background-color: #4444447d;
-           border-radius: 999px;
-           padding: 10px 20px;
-           margin-bottom: 40px;
-           display: flex;
-           justify-content: space-between;
-           align-items: center;
-           padding-top: 10px;
-           padding-right: 20px;
-           padding-bottom: 10px;
-           padding-left: 13px;
-         }
-
-         .navbar .left,
-           flex: 1 1 0%;
-           display: inline-block;
-           align-self: center;
-         .navbar .center,
-         .navbar .right {
-           display: flex;
-           align-items: center;
-
-         }
-
-         .navbar .center {
-           flex-grow: 1;
-           justify-content: center;
-         }
-
-         .navbar span {
-           font-size: 28px;
-           font-weight: bold;
-         }
-
-         .navbar .xe {
-           color: red;
-         }
-
-         .navbar .labs {
-           color: white;
-         }
-
-         .navbar .logo {
-           width: 50px;
-           height: 50px;
-           border-radius: 50%;
-           overflow: hidden;
-           background-color: transparent;
-           margin-right: 10px;
-         }
-
-         .navbar .logo img {
-           width: 100%;
-           height: 100%;
-           object-fit: cover;
-         }
-
-         .navbar .right a {
-           color: white;
-           text-decoration: none;
-           font-size: 14px;
-           background-color: red;
-           padding: 8px 12px;
-           border-radius: 999px;
-           transition: background-color 0.3s;
-           margin-left: 10px;
-         }
-
-         .navbar .right a:hover {
-           background-color: #c00;
-         }
-
-         .library {
-           display: grid;
-           grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-           gap: 20px;
-         }
-
-         .plugin-card {
-           background-color: #1e1e1e;
-           border: 2px solid #4444447d;
-           border-radius: 20px;
-           padding: 20px;
-           position: relative;
-           transition: transform 0.3s;
-           display: flex;
-           flex-direction: column;
-           opacity: 0;
-           transform: translateY(10px);
-           transition: opacity 0.5s ease, transform 0.5s ease;
-         }
-
-         .plugin-card.fade-in {
-           opacity: 1;
-           transform: translateY(0);
-          }
-
-         .plugin-card:hover {
-           transform: scale(1.03);
-         }
-
-         .plugin-image {
-           width: 100%;
-           height: 150px;
-           background-color: #333;
-           border-radius: 10px;
-           margin-bottom: 15px;
-         }
-
-         .plugin-title {
-           font-size: 20px;
-           margin-bottom: 10px;
-           text-align: center;
-         }
-
-         .plugin-desc {
-           font-size: 13px;
-           color: #bbb;
-           text-align: center;
-           margin-bottom: 30px;
-         }
-
-         .new-tag {
-           position: absolute;
-           top: 15px;
-           right: 15px;
-           background-color: red;
-           color: white;
-           padding: 5px 10px;
-           font-size: 12px;
-           border-radius: 10px;
-           font-weight: bold;
-         }
-
-         .plugin-card.new-card {
-           border-color: #ff0000;
-           box-shadow: 0 0 15px rgba(255, 0, 0, 0.5);
-         }
-         .plugin-card.update-card {
-          border-color: #007bff;
-          box-shadow: 0 0 15px rgba(0, 123, 255, 0.6);
-         }
-
-         .plugin-btn {
-           display: block;
-           margin: 15px auto 0;
-           background-color: red;
-           color: white;
-           padding: 8px 16px;
-           border: none;
-           border-radius: 999px;
-           font-size: 13px;
-           cursor: pointer;
-           text-align: center;
-           text-decoration: none;
-           transition: background-color 0.3s;
-           width: fit-content;
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      }
+      body {
+        background-color: #1a1a1a;
+        color: #fff;
+        padding: 20px;
+        padding-bottom: 35%;
+        overflow-x: hidden;
+      }
+      .navbar {
+        position: sticky;
+        top: 20px;
+        z-index: 100;
+        background-color: #4444447d;
+        border-radius: 999px;
+        padding: 10px 20px;
+        margin-bottom: 40px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding-left: 13px;
+      }
+      .navbar .left {
+        flex: 1 1 0%;
+        display: flex;
+        align-items: center;
+      }
+      .navbar span {
+        font-size: 28px;
+        font-weight: bold;
+      }
+      .navbar .xe {
+        color: red;
+      }
+      .navbar .labs {
+        color: white;
+      }
+      .navbar .logo {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        overflow: hidden;
+        background-color: transparent;
+        margin-right: 10px;
+      }
+      .navbar .logo img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+      .navbar .right a {
+        color: white;
+        text-decoration: none;
+        font-size: 14px;
+        background-color: red;
+        padding: 8px 12px;
+        border-radius: 999px;
+        transition: background-color 0.3s;
+        margin-left: 10px;
+      }
+      .navbar .right a:hover {
+        background-color: #c00;
+      }
+      .library {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        gap: 20px;
+      }
+      .plugin-card {
+        background-color: #1e1e1e;
+        border: 2px solid #4444447d;
+        border-radius: 20px;
+        padding: 20px;
+        position: relative;
+        transition: transform 0.3s;
+        display: flex;
+        flex-direction: column;
+        opacity: 0;
+        transform: translateY(10px);
+        transition: opacity 0.5s ease, transform 0.5s ease;
+      }
+      .plugin-card.fade-in {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      .plugin-card:hover {
+        transform: scale(1.03);
+      }
+      .plugin-image {
+        width: 100%;
+        height: 150px;
+        background-color: #333;
+        border-radius: 10px;
+        margin-bottom: 15px;
+      }
+      .plugin-title {
+        font-size: 20px;
+        margin-bottom: 10px;
+        text-align: center;
+      }
+      .plugin-desc {
+        font-size: 13px;
+        color: #bbb;
+        text-align: center;
+        margin-bottom: 30px;
+      }
+      .new-tag {
+        position: absolute;
+        top: 15px;
+        right: 15px;
+        background-color: red;
+        color: white;
+        padding: 5px 10px;
+        font-size: 12px;
+        border-radius: 10px;
+        font-weight: bold;
+      }
+      .plugin-card.new-card {
+        border-color: #ff0000;
+        box-shadow: 0 0 15px rgba(255, 0, 0, 0.5);
+      }
+      .plugin-card.update-card {
+        border-color: #007bff;
+        box-shadow: 0 0 15px rgba(0, 123, 255, 0.6);
+      }
+      .plugin-btn {
+        display: block;
+        margin: 15px auto 0;
+        background-color: red;
+        color: white;
+        padding: 8px 16px;
+        border: none;
+        border-radius: 999px;
+        font-size: 13px;
+        cursor: pointer;
+        text-align: center;
+        text-decoration: none;
+        transition: background-color 0.3s;
+        width: fit-content;
         margin-top: auto;
-         }
-
+      }
       .footer {
-           position: fixed;
-           bottom: 0;
-           left: 0;
-           width: 100%;
-           background-color: #1c1c1e;
-           padding: 20px;
-           box-shadow: 0 -0.5px 99px rgba(0,0,0,0.3);
-           display: flex;
-           flex-direction: column;
-           align-items: center;
-           z-index: 999;
-         }
-
-         .footer .nav,
-         .footer {
-           display: flex;
-           flex-wrap: center;
-           justify-content: center;
-           gap: 15px;
-         }
-
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        background-color: #1c1c1e;
+        padding: 20px;
+        box-shadow: 0 -0.5px 99px rgba(0, 0, 0, 0.3);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        z-index: 999;
+      }
+      .footer .nav,
+      .footer {
+        display: flex;
+        flex-wrap: center;
+        justify-content: center;
+        gap: 15px;
+      }
       .footer .divider {
-      	margin: 0 20px;
-      	border: 2px solid #3d3d3d;
-      	height: 2px;
-      	width: 100px;
+        margin: 0 20px;
+        border: 2px solid #3d3d3d;
+        height: 2px;
+        width: 100px;
       }
-
       .nav {
-      	color: #cfcfcf;
+        color: #cfcfcf;
       }
-
       .update-tag {
         position: absolute;
         top: 15px;
@@ -274,52 +239,85 @@
         font-weight: bold;
         box-shadow: 0 0 15px rgba(0, 123, 255, 0.6);
       }
-
-
       .divider {
-      	position: relative;
-      	top: 8px;
-      	border-radius: 5px;
-
-      }
-
-         .footer .nav a,
-         .footer a {
-           color: #aaa;
-           text-decoration: none;
-           transition: color 0.3s;
-         }
-
-         .footer .nav a:hover,
-         .footer a:hover {
-           color: #fff;
-         }
-
-         .footer {
-           font-size: 15px;
-         }
-
-         .footer .info {
-           font-size: 13px;
-           color: #666;
-         }
-
-         .plugin-btn:hover {
-           background-color: #c00;
-         }
-
-         ::-webkit-scrollbar {
-           width: 5px;
-         }
-
-         ::-webkit-scrollbar-track {
-           background: #1a1a1a;
-         }
-
-         ::-webkit-scrollbar-thumb {
-           background: red;
+        position: relative;
+        top: 8px;
         border-radius: 5px;
-         }
+      }
+      .footer .nav a,
+      .footer a {
+        color: #aaa;
+        text-decoration: none;
+        transition: color 0.3s;
+      }
+      .footer .nav a:hover,
+      .footer a:hover {
+        color: #fff;
+      }
+      .footer {
+        font-size: 15px;
+      }
+      .info {
+        text-align: center;
+      }
+      .footer .info {
+        font-size: 13px;
+        color: #666;
+      }
+      .plugin-btn:hover {
+        background-color: #c00;
+      }
+      ::-webkit-scrollbar {
+        width: 5px;
+      }
+      ::-webkit-scrollbar-track {
+        background: #1a1a1a;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: red;
+        border-radius: 5px;
+      }
+      .xelabsoriginals-tag {
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        width: 45px;
+        height: 45px;
+        border-radius: 50%;
+        overflow: hidden;
+        cursor: pointer;
+        z-index: 1;
+      }
+      .xelabsoriginals-tag img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+      .code-buttons {
+        display: flex;
+        gap: 15px;
+        margin-top: auto;
+        justify-content: center;
+      }
+      .code-buttons a,
+      .code-buttons button {
+        display: block;
+        background-color: red;
+        color: white;
+        padding: 8px 16px;
+        border: none;
+        border-radius: 999px;
+        font-size: 13px;
+        cursor: pointer;
+        text-align: center;
+        text-decoration: none;
+        transition: background-color 0.3s;
+        width: fit-content;
+      }
+      .code-buttons a:hover,
+      .code-buttons button:hover {
+        background-color: #c00;
+      }
     </style>
   </head>
   <body>
@@ -331,8 +329,6 @@
             alt="Logo"
           />
         </div>
-      </div>
-      <div class="center">
         <span class="xe">Xe</span><span class="labs">Labs</span>
       </div>
       <div class="right">
@@ -342,8 +338,29 @@
 
     <div class="library" id="pluginContainer"></div>
 
+    <script src="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.js"></script>
     <script>
-      const fallbackImage = "./assets/extensions-images/picturefail.png";
+      const notyf = new Notyf({
+        duration: 3000,
+        position: {
+          x: "center",
+          y: "bottom",
+        },
+        types: [
+          {
+            type: "info",
+            background: "#00b3ff",
+            icon: false,
+            dismissible: true,
+          },
+          {
+            type: "success",
+            background: "#28a745",
+            icon: false,
+            dismissible: true,
+          },
+        ],
+      });
 
       fetch("./get/extensions.json")
         .then((response) => response.json())
@@ -362,10 +379,10 @@
                 let plugin = {
                   name: "Undefined",
                   description: "Undefined",
-                  image: fallbackImage,
                   link: file,
                   new: false,
                   update: false,
+                  author: null,
                 };
 
                 lines.forEach((line) => {
@@ -383,6 +400,8 @@
                   } else if (content.startsWith("Image:")) {
                     const img = content.replace("Image:", "").trim();
                     if (img) plugin.image = img;
+                  } else if (content.startsWith("Author:")) {
+                    plugin.author = content.replace("Author:", "").trim();
                   }
                 });
 
@@ -400,6 +419,8 @@
               card.className = "plugin-card";
 
               let tagHTML = "";
+              let xelabsoriginalsTagHTML = "";
+
               if (plugin.new) {
                 card.classList.add("new-card");
                 tagHTML = '<div class="new-tag">NEW</div>';
@@ -408,15 +429,55 @@
                 tagHTML = '<div class="update-tag">UPDATE</div>';
               }
 
+              if (plugin.author === "XmerOriginals") {
+                xelabsoriginalsTagHTML = `
+                <div class="xelabsoriginals-tag">
+                  <img src="./assets/xelabsoriginal.svg" alt="xelabsoriginals" title="XeLabs Original Extension">
+                </div>
+              `;
+              }
+
               card.innerHTML = `
-            <div class="plugin-image" style="background-image: url('${plugin.image}'); background-size: cover;"></div>
-            <div class="plugin-title">${plugin.name}</div>
-            <div class="plugin-desc">${plugin.description}</div>
-            ${tagHTML}
-            <a class="plugin-btn" href="${plugin.link}" target="_blank">Code</a>
-          `;
+              ${xelabsoriginalsTagHTML}
+              <div class="plugin-image" style="background-image: url('${plugin.image}'); background-size: cover;"></div>
+              <div class="plugin-title">${plugin.name}</div>
+              <div class="plugin-desc">${plugin.description}</div>
+              ${tagHTML}
+              <div class="code-buttons">
+                <a href="${plugin.link}" target="_blank">View Code</a>
+                <button data-url="${plugin.link}">Copy Code</button>
+              </div>
+            `;
 
               container.appendChild(card);
+              if (plugin.author === "XmerOriginals") {
+                card
+                  .querySelector(".xelabsoriginals-tag")
+                  .addEventListener("click", () => {
+                    notyf.open({
+                      type: "info",
+                      message: "XeLabs Original Extension",
+                    });
+                  });
+              }
+              card
+                .querySelector("button[data-url]")
+                .addEventListener("click", async (event) => {
+                  const url = event.target.dataset.url;
+                  try {
+                    const response = await fetch(url);
+                    const code = await response.text();
+                    await navigator.clipboard.writeText(code);
+                    notyf.open({
+                      type: "success",
+                      message: "Code copied to clipboard.",
+                    });
+                  } catch (error) {
+                    console.error("Failed to copy code:", error);
+                    notyf.error("Failed to copy code.");
+                  }
+                });
+
               setTimeout(() => {
                 card.classList.add("fade-in");
               }, 50);
