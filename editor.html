@@ -8,7 +8,6 @@
       type="image/png"
       href="https://xmeroriginals.github.io/xelabs/assets/XeLabsEditor.png"
     />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
       name="description"
       content="Discover advanced extensions developed by XeLabs. Explore tools to enhance your Scratch and TurboWarp projects with powerful, creative, and unique extensions."
@@ -61,17 +60,21 @@
     />
     <style>
       :root {
-        --editor-bg: #1e1e2e;
-        --editor-text: #cdd6f4;
-        --header-bg: #181825;
-        --status-bg: #181825;
-        --border-color: #313244;
-        --button-bg: #45475a;
-        --button-hover: #45475a;
-        --action-button: #45475a;
-        --action-button-hover: #343648;
-        --language-selector-bg: #313244;
-        --language-selector-text: #cdd6f4;
+        --editor-bg: #1a1a1a;
+        --editor-text: #ffffff;
+        --header-bg: #1a1a1a;
+        --status-bg: #1a1a1a;
+        --border-color: #2e2e2e;
+        --button-bg: #262626;
+        --button-hover: #ff0000;
+        --action-button: #262626;
+        --action-button-hover: #ff0000;
+        --language-selector-bg: #1e1e1e;
+        --language-selector-text: #ffffff;
+        --scrollbar-thumb: #9d9d9e;
+        --scrollbar-track: #1a1a1a;
+        --logo-color: #ff0000;
+        --status-item-bg: #1e1e1e;
       }
 
       @media (prefers-color-scheme: light) {
@@ -87,6 +90,10 @@
           --action-button-hover: rgb(115, 115, 115);
           --language-selector-bg: #e0e0e0;
           --language-selector-text: #4a4a4a;
+          --scrollbar-thumb: #c0c0c0;
+          --scrollbar-track: #f5f5f5;
+          --logo-color: #ff0000;
+          --status-item-bg: #e0e0e0;
         }
       }
 
@@ -116,6 +123,8 @@
         outline: none;
         padding: 20px;
         box-sizing: border-box;
+        border-left: 1px solid var(--border-color);
+        border-right: 1px solid var(--border-color);
       }
 
       .editor-container {
@@ -129,12 +138,14 @@
         background-color: var(--header-bg);
         border-bottom: 1px solid var(--border-color);
         height: 60px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
       }
 
       .status-bar {
         background-color: var(--status-bg);
         border-top: 1px solid var(--border-color);
         height: 40px;
+        box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.3);
       }
 
       .button {
@@ -149,10 +160,12 @@
         cursor: pointer;
         border: none;
         color: var(--editor-text);
+        border: 1px solid var(--border-color);
       }
 
       .button:hover {
         background-color: var(--action-button-hover);
+        transform: scale(1.05);
       }
 
       .action-button {
@@ -164,20 +177,14 @@
       }
 
       ::-webkit-scrollbar {
-        width: 8px;
-        height: 8px;
+        width: 13px;
       }
 
       ::-webkit-scrollbar-track {
-        background: transparent;
+        background: var(--scrollbar-track);
       }
 
       ::-webkit-scrollbar-thumb {
-        background: var(--button-bg);
-        border-radius: 4px;
-      }
-
-      ::-webkit-scrollbar-thumb:hover {
         background: var(--button-hover);
       }
 
@@ -187,6 +194,9 @@
 
       .notyf__toast {
         border-radius: 8px !important;
+        background-color: var(--status-item-bg) !important;
+        color: var(--editor-text) !important;
+        border: 1px solid var(--border-color) !important;
       }
 
       @media (max-width: 768px) {
@@ -208,7 +218,8 @@
       }
 
       .logo-icon {
-        color: var(--editor-tex);
+        color: var(--logo-color);
+        font-size: 1.5rem;
       }
 
       .logo-container:hover {
@@ -218,11 +229,12 @@
       .status-item {
         padding: 0.25rem 0.75rem;
         border-radius: 4px;
-        background-color: var(--button-bg);
+        background-color: var(--status-item-bg);
         margin-right: 0.5rem;
         font-size: 0.85rem;
         display: flex;
         align-items: center;
+        border: 1px solid var(--border-color);
       }
 
       .status-item i {
@@ -248,63 +260,87 @@
       .button-disabled {
         opacity: 0.5;
         cursor: not-allowed;
+        background-color: var(--button-bg) !important;
+      }
+
+      .button-disabled:hover {
+        background-color: var(--button-bg) !important;
+        transform: none !important;
+      }
+
+      .title-text {
+        background: #ff0000;
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        font-weight: 700;
+      }
+
+      .red-accent {
+        color: #ff0000;
+      }
+
+      .border-red {
+        border-color: #ff0000 !important;
+      }
+
+      .hover\:border-red:hover {
+        border-color: #ff0000 !important;
       }
     </style>
   </head>
   <body>
     <div id="app">
-      <header class="header p-3 flex justify-between items-center shadow-sm">
+      <header class="header px-3 flex justify-between items-center">
         <div class="flex items-center space-x-4">
           <i class="fas fa-code text-xl pl-2 logo-icon"></i>
-          <h1 class="text-xl font-bold">XeLabs Editor</h1>
+          <h1 class="text-xl font-bold title-text">XeLabs</h1>
         </div>
         <div class="flex items-center">
           <button
             id="rewindBtn"
-            class="button action-button nav-button button-disabled"
+            class="button action-button nav-button button-disabled hover:border-red"
             title="Undo (Ctrl+Z)"
           >
-            <i class="fas fa-undo"></i>
+            <i class="fas fa-undo red-accent"></i>
           </button>
           <button
             id="forwardBtn"
-            class="button action-button nav-button button-disabled"
+            class="button action-button nav-button button-disabled hover:border-red"
             title="Redo (Ctrl+Y)"
           >
-            <i class="fas fa-redo"></i>
+            <i class="fas fa-redo red-accent"></i>
           </button>
           <button
             id="saveBtn"
-            class="button action-button nav-button"
+            class="button action-button nav-button hover:border-red"
             title="Save (Ctrl+S)"
           >
-            <i class="fas fa-save"></i>
+            <i class="fas fa-save red-accent"></i>
           </button>
         </div>
       </header>
       <div class="editor-container">
         <textarea id="editor" spellcheck="false"></textarea>
       </div>
-      <div
-        class="status-bar p-2 text-sm flex justify-between items-center shadow-inner"
-      >
+      <div class="status-bar px-2 text-sm flex justify-between items-center">
         <div class="flex items-center">
           <div id="statusMessage" class="status-item">
-            <i class="fas fa-circle-notch fa-spin"></i>
+            <i class="fas fa-circle-notch fa-spin red-accent"></i>
             <span>Loading...</span>
           </div>
         </div>
         <div class="flex items-center">
           <span id="lineCount" class="status-item">
-            <i class="fas fa-grip-lines"></i>
+            <i class="fas fa-grip-lines red-accent"></i>
             <span>-</span>
           </span>
           <span id="charCount" class="status-item">
-            <i class="fas fa-font"></i>
+            <i class="fas fa-font red-accent"></i>
             <span>-</span>
           </span>
           <span id="cursorPosition" class="status-item">
-            <i class="fas fa-caret-right"></i>
+            <i class="fas fa-caret-right red-accent"></i>
             <span>Ln 1, Col 1</span>
           </span>
         </div>
@@ -334,29 +370,29 @@
           types: [
             {
               type: "success",
-              background: "var(--action-button)",
+              background: "var(--status-item-bg)",
               icon: {
-                className: "fas fa-check-circle",
+                className: "fas fa-check-circle red-accent",
                 tagName: "i",
-                color: "var(--editor-text)",
+                color: "#ff0000",
               },
             },
             {
               type: "error",
-              background: "#f38ba8",
+              background: "var(--status-item-bg)",
               icon: {
-                className: "fas fa-times-circle",
+                className: "fas fa-times-circle red-accent",
                 tagName: "i",
-                color: "var(--editor-text)",
+                color: "#ff0000",
               },
             },
             {
               type: "info",
-              background: "var(--action-button)",
+              background: "var(--status-item-bg)",
               icon: {
-                className: "fas fa-info-circle",
+                className: "fas fa-info-circle red-accent",
                 tagName: "i",
-                color: "var(--editor-text)",
+                color: "#ff0000",
               },
             },
           ],
@@ -407,7 +443,7 @@
               editor.value = savedContent;
               originalContent = savedContent;
               statusMessage.innerHTML =
-                '<i class="fas fa-check-circle"></i><span>Saved</span>';
+                '<i class="fas fa-check-circle red-accent"></i><span>Saved</span>';
               initializeHistory(savedContent);
               notyf.success("Loaded from Local Storage");
             } else {
@@ -419,7 +455,7 @@
             }
             updateCounts();
             statusMessage.innerHTML =
-              '<i class="fas fa-info-circle"></i><span>Ready</span>';
+              '<i class="fas fa-info-circle red-accent"></i><span>Ready</span>';
           }
         }
 
@@ -531,10 +567,10 @@
 
           if (currentContent !== originalContent) {
             statusMessage.innerHTML =
-              '<i class="fas fa-exclamation-circle"></i><span>Unsaved</span>';
+              '<i class="fas fa-exclamation-circle red-accent"></i><span>Unsaved</span>';
           } else {
             statusMessage.innerHTML =
-              '<i class="fas fa-check-circle"></i><span>Saved</span>';
+              '<i class="fas fa-check-circle red-accent"></i><span>Saved</span>';
           }
         }
 
