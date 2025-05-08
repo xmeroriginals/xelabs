@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="icon"
+      type="image/png"
+      href="https://xmeroriginals.github.io/xelabs/assets/XeLabsEditor.png"
+    />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Discover advanced extensions developed by XeLabs. Explore tools to enhance your Scratch and TurboWarp projects with powerful, creative, and unique extensions."
+    />
+    <meta
+      name="keywords"
+      content="XeLabs, Scratch, TurboWarp, Extensions, Plugins, XmerOriginals, Advanced Scratch Tools, Scratch Plugins, TurboWarp Extensions, coding, JavaScript"
+    />
+    <meta name="author" content="XmerOriginals" />
+    <meta name="language" content="en" />
+    <meta name="robots" content="index, follow" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://xmeroriginals.github.io/xelabs/" />
+    <meta property="og:title" content="XeLabs | Extensions Gallery" />
+    <meta
+      property="og:description"
+      content="Explore the most innovative and advanced Scratch&TurboWarp extensions, crafted by XeLabs."
+    />
+    <meta
+      property="og:image"
+      content="https://xmeroriginals.github.io/xelabs/assets/XeLabsEditorSquare.png"
+    />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta
+      name="twitter:url"
+      content="https://xmeroriginals.github.io/xelabs/"
+    />
+    <meta name="twitter:title" content="XeLabs | Extensions Gallery" />
+    <meta
+      name="twitter:description"
+      content="Explore the most innovative and advanced Scratch&TurboWarp extensions, crafted by XeLabs."
+    />
+    <meta
+      name="twitter:image"
+      content="https://xmeroriginals.github.io/xelabs/assets/XeLabsEditorSquare.png"
+    />
+    <title>XeLabs Editor</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.css"
+    />
+    <style>
+      :root {
+        --editor-bg: #1e1e2e;
+        --editor-text: #cdd6f4;
+        --header-bg: #181825;
+        --status-bg: #181825;
+        --border-color: #313244;
+        --button-bg: #45475a;
+        --button-hover: #45475a;
+        --action-button: #45475a;
+        --action-button-hover: #343648;
+        --language-selector-bg: #313244;
+        --language-selector-text: #cdd6f4;
+      }
+
+      @media (prefers-color-scheme: light) {
+        :root {
+          --editor-bg: #f5f5f5;
+          --editor-text: #000000;
+          --header-bg: #ffffff;
+          --status-bg: #ffffff;
+          --border-color: #dbdbdb;
+          --button-bg: #f0f0f0;
+          --button-hover: #e0e0e0;
+          --action-button: #e0e0e0;
+          --action-button-hover: rgb(115, 115, 115);
+          --language-selector-bg: #e0e0e0;
+          --language-selector-text: #4a4a4a;
+        }
+      }
+
+      body {
+        font-family: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+        background-color: var(--editor-bg);
+        color: var(--editor-text);
+        transition: background-color 0.3s ease, color 0.3s ease;
+        overflow: hidden;
+        height: 100vh;
+        margin: 0;
+      }
+
+      #editor {
+        font-family: "Fira Code", "Courier New", monospace;
+        tab-size: 4;
+        line-height: 1.6;
+        background-color: var(--editor-bg);
+        color: var(--editor-text);
+        caret-color: var(--editor-text);
+        overflow-y: auto;
+        overflow-x: hidden;
+        width: 100%;
+        height: calc(100vh - 100px);
+        resize: none;
+        border: none;
+        outline: none;
+        padding: 20px;
+        box-sizing: border-box;
+      }
+
+      .editor-container {
+        background-color: var(--editor-bg);
+        overflow: hidden;
+        position: relative;
+        flex-grow: 1;
+      }
+
+      .header {
+        background-color: var(--header-bg);
+        border-bottom: 1px solid var(--border-color);
+        height: 60px;
+      }
+
+      .status-bar {
+        background-color: var(--status-bg);
+        border-top: 1px solid var(--border-color);
+        height: 40px;
+      }
+
+      .button {
+        transition: all 0.2s ease;
+        border-radius: 6px;
+        width: 36px;
+        height: 36px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: var(--action-button);
+        cursor: pointer;
+        border: none;
+        color: var(--editor-text);
+      }
+
+      .button:hover {
+        background-color: var(--action-button-hover);
+      }
+
+      .action-button {
+        background-color: var(--action-button) !important;
+      }
+
+      .action-button:hover {
+        background-color: var(--action-button-hover) !important;
+      }
+
+      ::-webkit-scrollbar {
+        width: 8px;
+        height: 8px;
+      }
+
+      ::-webkit-scrollbar-track {
+        background: transparent;
+      }
+
+      ::-webkit-scrollbar-thumb {
+        background: var(--button-bg);
+        border-radius: 4px;
+      }
+
+      ::-webkit-scrollbar-thumb:hover {
+        background: var(--button-hover);
+      }
+
+      .nav-button {
+        margin: 0 4px;
+      }
+
+      .notyf__toast {
+        border-radius: 8px !important;
+      }
+
+      @media (max-width: 768px) {
+        .button-text {
+          display: none;
+        }
+        .button-icon {
+          margin-right: 0 !important;
+        }
+      }
+
+      .contenteditable-highlight {
+        min-height: 100%;
+        outline: none;
+      }
+
+      .action-button i {
+        color: var(--editor-text) !important;
+      }
+
+      .logo-icon {
+        color: var(--editor-tex);
+      }
+
+      .logo-container:hover {
+        background-color: var(--button-hover);
+      }
+
+      .status-item {
+        padding: 0.25rem 0.75rem;
+        border-radius: 4px;
+        background-color: var(--button-bg);
+        margin-right: 0.5rem;
+        font-size: 0.85rem;
+        display: flex;
+        align-items: center;
+      }
+
+      .status-item i {
+        margin-right: 0.25rem;
+      }
+
+      .editor-wrapper {
+        position: relative;
+        height: 100%;
+      }
+
+      #app {
+        display: flex;
+        flex-direction: column;
+        height: 100vh;
+      }
+
+      .status-message {
+        display: flex;
+        align-items: center;
+      }
+
+      .button-disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <header class="header p-3 flex justify-between items-center shadow-sm">
+        <div class="flex items-center space-x-4">
+          <i class="fas fa-code text-xl pl-2 logo-icon"></i>
+          <h1 class="text-xl font-bold">XeLabs Editor</h1>
+        </div>
+        <div class="flex items-center">
+          <button
+            id="rewindBtn"
+            class="button action-button nav-button button-disabled"
+            title="Undo (Ctrl+Z)"
+          >
+            <i class="fas fa-undo"></i>
+          </button>
+          <button
+            id="forwardBtn"
+            class="button action-button nav-button button-disabled"
+            title="Redo (Ctrl+Y)"
+          >
+            <i class="fas fa-redo"></i>
+          </button>
+          <button
+            id="saveBtn"
+            class="button action-button nav-button"
+            title="Save (Ctrl+S)"
+          >
+            <i class="fas fa-save"></i>
+          </button>
+        </div>
+      </header>
+      <div class="editor-container">
+        <textarea id="editor" spellcheck="false"></textarea>
+      </div>
+      <div
+        class="status-bar p-2 text-sm flex justify-between items-center shadow-inner"
+      >
+        <div class="flex items-center">
+          <div id="statusMessage" class="status-item">
+            <i class="fas fa-circle-notch fa-spin"></i>
+            <span>Loading...</span>
+          </div>
+        </div>
+        <div class="flex items-center">
+          <span id="lineCount" class="status-item">
+            <i class="fas fa-grip-lines"></i>
+            <span>-</span>
+          </span>
+          <span id="charCount" class="status-item">
+            <i class="fas fa-font"></i>
+            <span>-</span>
+          </span>
+          <span id="cursorPosition" class="status-item">
+            <i class="fas fa-caret-right"></i>
+            <span>Ln 1, Col 1</span>
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const editor = document.getElementById("editor");
+        const saveBtn = document.getElementById("saveBtn");
+        const rewindBtn = document.getElementById("rewindBtn");
+        const forwardBtn = document.getElementById("forwardBtn");
+        const statusMessage = document.getElementById("statusMessage");
+        const lineCount = document
+          .getElementById("lineCount")
+          .querySelector("span:last-child");
+        const charCount = document
+          .getElementById("charCount")
+          .querySelector("span:last-child");
+        const cursorPosition = document
+          .getElementById("cursorPosition")
+          .querySelector("span:last-child");
+
+        const notyf = new Notyf({
+          duration: 1500,
+          position: { x: "center", y: "bottom" },
+          types: [
+            {
+              type: "success",
+              background: "var(--action-button)",
+              icon: {
+                className: "fas fa-check-circle",
+                tagName: "i",
+                color: "var(--editor-text)",
+              },
+            },
+            {
+              type: "error",
+              background: "#f38ba8",
+              icon: {
+                className: "fas fa-times-circle",
+                tagName: "i",
+                color: "var(--editor-text)",
+              },
+            },
+            {
+              type: "info",
+              background: "var(--action-button)",
+              icon: {
+                className: "fas fa-info-circle",
+                tagName: "i",
+                color: "var(--editor-text)",
+              },
+            },
+          ],
+        });
+
+        let originalContent = "";
+        let versionHistory = [];
+        let currentVersionIndex = -1;
+        let isTyping = false;
+        let debounceTimer;
+        let isUndoRedoInProgress = false;
+
+        function loadInitialContent() {
+          const urlParams = new URLSearchParams(window.location.search);
+          const textParam = urlParams.get("text");
+
+          if (textParam) {
+            if (window.location.protocol === "https:") {
+              fetch(textParam)
+                .then((response) => response.text())
+                .then((text) => {
+                  editor.value = text;
+                  originalContent = text;
+                  updateCounts();
+                  checkSavedStatus();
+                  initializeHistory(text);
+                  notyf.success("Loaded from URL");
+                })
+                .catch(() => {
+                  editor.value = decodeURIComponent(textParam);
+                  originalContent = decodeURIComponent(textParam);
+                  updateCounts();
+                  checkSavedStatus();
+                  initializeHistory(decodeURIComponent(textParam));
+                  notyf.success("Loaded from URL");
+                });
+            } else {
+              editor.value = decodeURIComponent(textParam);
+              originalContent = decodeURIComponent(textParam);
+              updateCounts();
+              checkSavedStatus();
+              initializeHistory(decodeURIComponent(textParam));
+              notyf.success("Loaded from URL");
+            }
+          } else {
+            const savedContent = localStorage.getItem("editorContent");
+            if (savedContent) {
+              editor.value = savedContent;
+              originalContent = savedContent;
+              statusMessage.innerHTML =
+                '<i class="fas fa-check-circle"></i><span>Saved</span>';
+              initializeHistory(savedContent);
+              notyf.success("Loaded from Local Storage");
+            } else {
+              editor.value =
+                '<!-- Welcome to XeLabs Editor -->\n<!-- Start coding here... -->\n\n<div class="container">\n  <h1>Hello, world!</h1>\n  <p>This is an HTML document.</p>\n</div>';
+              originalContent = editor.value;
+              initializeHistory(editor.value);
+              notyf.info("New Document Created");
+            }
+            updateCounts();
+            statusMessage.innerHTML =
+              '<i class="fas fa-info-circle"></i><span>Ready</span>';
+          }
+        }
+
+        function initializeHistory(content) {
+          versionHistory = [content];
+          currentVersionIndex = 0;
+          updateNavigationButtons();
+        }
+
+        function addToHistory(content) {
+          if (isUndoRedoInProgress) {
+            return;
+          }
+
+          if (
+            versionHistory.length > 0 &&
+            versionHistory[currentVersionIndex] === content
+          ) {
+            return;
+          }
+
+          if (currentVersionIndex < versionHistory.length - 1) {
+            versionHistory = versionHistory.slice(0, currentVersionIndex + 1);
+          }
+
+          versionHistory.push(content);
+          currentVersionIndex = versionHistory.length - 1;
+
+          if (versionHistory.length > 100) {
+            versionHistory.shift();
+            currentVersionIndex--;
+          }
+
+          updateNavigationButtons();
+        }
+
+        function updateNavigationButtons() {
+          rewindBtn.disabled = currentVersionIndex <= 0;
+          forwardBtn.disabled =
+            currentVersionIndex >= versionHistory.length - 1;
+
+          if (rewindBtn.disabled) {
+            rewindBtn.classList.add("button-disabled");
+          } else {
+            rewindBtn.classList.remove("button-disabled");
+          }
+
+          if (forwardBtn.disabled) {
+            forwardBtn.classList.add("button-disabled");
+          } else {
+            forwardBtn.classList.remove("button-disabled");
+          }
+        }
+
+        function navigateToPreviousVersion() {
+          if (currentVersionIndex > 0) {
+            isUndoRedoInProgress = true;
+            currentVersionIndex--;
+            const content = versionHistory[currentVersionIndex];
+            editor.value = content;
+            originalContent = content;
+            updateCounts();
+            checkSavedStatus();
+            updateNavigationButtons();
+
+            setTimeout(() => {
+              isUndoRedoInProgress = false;
+            }, 0);
+          }
+        }
+
+        function navigateToNextVersion() {
+          if (currentVersionIndex < versionHistory.length - 1) {
+            isUndoRedoInProgress = true;
+            currentVersionIndex++;
+            const content = versionHistory[currentVersionIndex];
+            editor.value = content;
+            originalContent = content;
+            updateCounts();
+            checkSavedStatus();
+            updateNavigationButtons();
+
+            setTimeout(() => {
+              isUndoRedoInProgress = false;
+            }, 0);
+          }
+        }
+
+        function updateCounts() {
+          const text = editor.value;
+          const lines = text.split("\n").length;
+          const chars = text.length;
+
+          lineCount.textContent = lines;
+          charCount.textContent = chars;
+        }
+
+        function updateCursorPosition() {
+          const cursorPos = editor.selectionStart;
+          const text = editor.value.substring(0, cursorPos);
+          const lineNum = text.split("\n").length;
+          const colNum = cursorPos - text.lastIndexOf("\n") - 1;
+
+          cursorPosition.textContent = `Ln ${lineNum}, Col ${colNum + 1}`;
+        }
+
+        function checkSavedStatus() {
+          const currentContent = editor.value;
+
+          if (currentContent !== originalContent) {
+            statusMessage.innerHTML =
+              '<i class="fas fa-exclamation-circle"></i><span>Unsaved</span>';
+          } else {
+            statusMessage.innerHTML =
+              '<i class="fas fa-check-circle"></i><span>Saved</span>';
+          }
+        }
+
+        function editorHandler() {
+          if (isUndoRedoInProgress) return;
+
+          isTyping = true;
+          updateCounts();
+          updateCursorPosition();
+          checkSavedStatus();
+
+          clearTimeout(debounceTimer);
+          debounceTimer = setTimeout(() => {
+            const content = editor.value;
+            addToHistory(content);
+          }, 500);
+        }
+
+        function saveContent() {
+          const content = editor.value;
+          localStorage.setItem("editorContent", content);
+          originalContent = content;
+          checkSavedStatus();
+          notyf.success("Saved to Local Storage");
+        }
+
+        document.addEventListener("keydown", (e) => {
+          if (e.ctrlKey || e.metaKey) {
+            switch (e.key.toLowerCase()) {
+              case "s":
+                e.preventDefault();
+                saveContent();
+                break;
+              case "z":
+                if (!e.shiftKey) {
+                  e.preventDefault();
+                  navigateToPreviousVersion();
+                }
+                break;
+              case "y":
+                if (!e.shiftKey) {
+                  e.preventDefault();
+                  navigateToNextVersion();
+                }
+                break;
+            }
+          }
+        });
+
+        saveBtn.addEventListener("click", saveContent);
+        rewindBtn.addEventListener("click", navigateToPreviousVersion);
+        forwardBtn.addEventListener("click", navigateToNextVersion);
+
+        editor.addEventListener("input", editorHandler);
+        editor.addEventListener("keyup", updateCursorPosition);
+        editor.addEventListener("click", updateCursorPosition);
+
+        const darkModeMediaQuery = window.matchMedia(
+          "(prefers-color-scheme: dark)"
+        );
+        darkModeMediaQuery.addEventListener("change", (e) => {
+          document.body.style.display = "none";
+          document.body.offsetHeight;
+          document.body.style.display = "";
+        });
+
+        window.onload = function () {
+          editorHandler();
+          updateCursorPosition();
+          checkSavedStatus();
+        };
+
+        loadInitialContent();
+        editor.focus();
+      });
+    </script>
+  </body>
+</html>
