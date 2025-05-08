@@ -244,6 +244,12 @@
         top: 8px;
         border-radius: 5px;
       }
+      .notyf__toast {
+        border-radius: 8px !important;
+        background-color: var(--status-item-bg) !important;
+        color: var(--editor-text) !important;
+        border: 1px solid var(--border-color) !important;
+      }
       .footer .nav a,
       .footer a {
         color: #aaa;
@@ -340,23 +346,35 @@
     <script src="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.js"></script>
     <script>
       const notyf = new Notyf({
-        duration: 3000,
-        position: {
-          x: "center",
-          y: "bottom",
-        },
+        duration: 1500,
+        position: { x: "center", y: "bottom" },
         types: [
           {
-            type: "info",
-            background: "#2e2e2e",
-            icon: false,
-            dismissible: true,
+            type: "success",
+            background: "var(--status-item-bg)",
+            icon: {
+              className: "fas fa-check-circle red-accent",
+              tagName: "i",
+              color: "#ff0000",
+            },
           },
           {
             type: "error",
-            background: "#ff0000",
-            icon: false,
-            dismissible: true,
+            background: "var(--status-item-bg)",
+            icon: {
+              className: "fas fa-times-circle red-accent",
+              tagName: "i",
+              color: "#ff0000",
+            },
+          },
+          {
+            type: "info",
+            background: "var(--status-item-bg)",
+            icon: {
+              className: "fas fa-info-circle red-accent",
+              tagName: "i",
+              color: "#ff0000",
+            },
           },
         ],
       });
@@ -467,7 +485,7 @@
                   try {
                     const response = await fetch(url);
                     const code = await response.text();
-                    await navigator.clipboard.writeText(code); 
+                    await navigator.clipboard.writeText(code);
                     notyf.open({
                       type: "info",
                       message: "Code copied to clipboard.",
