@@ -465,17 +465,15 @@
                 .addEventListener("click", async (event) => {
                   const url = event.target.dataset.url;
                   try {
-                    const response = await fetch(url);
-                    const code = await response.text();
-                    await navigator.clipboard.writeText(code);
+                    await navigator.clipboard.writeText(url); 
                     notyf.open({
                       type: "info",
-                      message: "Code copied to clipboard.",
+                      message: "URL copied to clipboard.",
                     });
                   } catch (error) {
                     notyf.open({
                       type: "error",
-                      message: "Failed to copy code.",
+                      message: "Failed to copy URL.",
                     });
                   }
                 });
