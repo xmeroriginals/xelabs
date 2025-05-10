@@ -14,7 +14,7 @@
       return {
         id: 'chaintranslate',
         name: 'Chain Translate',
-        color1: '#989521',
+        color1: '#5b5ffc',
         blocks: [
           {
             opcode: 'translateWithMyMemory',
