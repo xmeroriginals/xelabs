@@ -5,5 +5,5 @@
   "./extensions/sweetalert.js",
   "./extensions/birthday.js",
   "./extensions/keyboardplus.js",
-  "./extensions/chaintranslate.js"
+  "./extensions/translate.js"
 ]
