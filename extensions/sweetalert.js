@@ -1,6 +1,5 @@
 // Name: Sweet Alert
 // Image: ./assets/extensions-images/sweetalert.png
-// Update: true
 // Author: XmerOriginals
 // ID: sweetalertv2
 // Description: It allows you to send modern customizable alerts using the Sweet Alert Library.
