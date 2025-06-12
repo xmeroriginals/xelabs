@@ -1,6 +1,5 @@
 // Name: Translate
 // Image: ./assets/extensions-images/translate.png
-// New: true
 // Author: XmerOriginals
 // ID: translate
 // Description: It allows you to translate easily and quickly with translation APIs.
