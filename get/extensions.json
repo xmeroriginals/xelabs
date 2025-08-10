@@ -4,6 +4,5 @@
   "./extensions/multifileplus.js",
   "./extensions/sweetalert.js",
   "./extensions/birthday.js",
-  "./extensions/keyboardplus.js",
-  "./extensions/translate.js"
+  "./extensions/keyboardplus.js"
 ]
