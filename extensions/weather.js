@@ -1,6 +1,7 @@
 // Name: Weather
 // Image: ./assets/extensions-images/weather.png
 // Author: XmerOriginals
+// New
 // ID: birthday
 // Description: Provides free weather forecast with WTTR. WTTR is an Open Source Project "https://github.com/chubin/wttr.in"
 // License: MPL-2.0
