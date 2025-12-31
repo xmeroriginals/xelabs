@@ -1,1 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ntfy.sh - Scratch Documentation</title>
+	<link
+      rel="icon"
+      type="image/png"
+      href="https://xelabs.xmeroriginals.com/assets/XeLabs.png"
+    />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
 
+        :root {
+            --primary: #3f51b5;
+            --primary-dark: #303f9f;
+            --bg: #f8fafc;
+            --card-bg: #ffffff;
+            --text: #1e293b;
+            --text-light: #64748b;
+            --accent: #eef2ff;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            padding: 40px 0;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            border-radius: 20px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            margin-top: 10px;
+        }
+
+        header p {
+            opacity: 0.9;
+            font-size: 1.1rem;
+        }
+		
+		#headerP {
+			position: relative;
+			bottom: 5px;
+		}
+
+        .section {
+            background: var(--card-bg);
+            padding: 30px;
+            border-radius: 16px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+        }
+
+        h2 {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 20px;
+            color: var(--primary);
+        }
+
+        .step-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .step-card {
+            background: var(--accent);
+            padding: 20px;
+            border-radius: 12px;
+            text-align: center;
+        }
+
+        .step-number {
+            background: var(--primary);
+            color: white;
+            width: 30px;
+            height: 30px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        .block-desc {
+            border-left: 5px solid var(--primary);
+            padding: 20px;
+            background: #f1f5f9;
+            margin-bottom: 25px;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .scratch-block-img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin-bottom: 15px;
+            filter: drop-shadow(0 4px 6px rgba(0,0,0,0.1));
+        }
+
+        code {
+            background: #e2e8f0;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: monospace;
+        }
+
+        .warning {
+            background: #fff7ed;
+            border: 1px solid #fed7aa;
+            padding: 15px;
+            border-radius: 12px;
+            color: #9a3412;
+            display: flex;
+            gap: 15px;
+            align-items: flex-start;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 40px;
+            padding-bottom: 40px;
+        }
+
+        .btn {
+            text-decoration: none;
+            padding: 12px 24px;
+            border-radius: 10px;
+            font-weight: 600;
+            transition: transform 0.2s;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+        }
+
+        .btn-outline {
+            border: 2px solid var(--primary);
+            color: var(--primary);
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+        }
+
+        @media (max-width: 600px) {
+            header h1 { font-size: 1.8rem; }
+            .section { padding: 20px; }
+            .footer-links { flex-direction: column; align-items: center; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <i data-lucide="bell-ring" size="48"></i>
+        <h1>ntfy.sh for Scratch</h1>
+        <p id="headerP">Send instant push notifications from your Scratch projects</p>
+    </header>
+
+    <div class="section">
+        <h2><i data-lucide="zap"></i> Quick Start</h2>
+        <p>Follow these 3 steps to receive alerts on your phone or PC:</p>
+        <div class="step-grid">
+            <div class="step-card">
+                <div class="step-number">1</div>
+                <h3>Pick a Topic</h3>
+                <p>Choose a unique name like <code>my_cool_program_99</code></p>
+            </div>
+            <div class="step-card">
+                <div class="step-number">2</div>
+                <h3>Subscribe</h3>
+                <p>Open the <b>ntfy</b> app or website and follow that topic.</p>
+            </div>
+            <div class="step-card">
+                <div class="step-number">3</div>
+                <h3>Send Block</h3>
+                <p>Use the extension blocks to send your message!</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2><i data-lucide="layout"></i> Block Reference</h2>
+        
+        <div class="block-desc">
+            <img src="https://xelabs.xmeroriginals.com/docs/ntfyScratch/blocksimple.png" alt="Simple Send Block" class="scratch-block-img">
+            <p>The easiest way to send a quick text. No setup required on the web side.</p>
+        </div>
+
+        <div class="block-desc">
+            <img src="https://xelabs.xmeroriginals.com/docs/ntfyScratch/blockcomplex.png" alt="Complex Notification Block" class="scratch-block-img">
+            <p>Advanced control: Add bold titles, emojis (tags), and set priority levels (1-5).</p>
+        </div>
+
+        <p style="margin-top: 15px;"><strong>Priority Tip:</strong> Level 5 (Max) will bypass some "Do Not Disturb" settings and ring loudly!</p>
+    </div>
+
+    <div class="section">
+        <div class="warning">
+            <i data-lucide="shield-alert" style="flex-shrink: 0;"></i>
+            <div>
+                <strong>Safety First:</strong>
+                <p>ntfy.sh topics are public. If someone knows your topic name, they can read your notifications. Don't send passwords or private data!</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer-links">
+        <a href="#" class="btn btn-primary">This Guide</a>
+        <a href="https://ntfy.sh/docs/" target="_blank" class="btn btn-outline">Official ntfy Docs</a>
+    </div>
+</div>
+
+<script>
+    lucide.createIcons();
+</script>
+
+</body>
+</html>
