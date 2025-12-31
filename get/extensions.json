@@ -2,6 +2,7 @@
   "./extensions/soundplayerplus.js",
   "./extensions/dropfiles.js",
   "./extensions/multifileplus.js",
+  "./extensions/ntfyscratch.js",
   "./extensions/weather.js",
   "./extensions/sweetalert.js",
   "./extensions/birthday.js",
