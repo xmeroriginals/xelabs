@@ -6,84 +6,131 @@
 // License: MPL-2.0
 // New
 
-(function(Scratch) {
-  'use strict';
+(function (Scratch) {
+  "use strict";
 
   class ntfyScratch {
     getInfo() {
       return {
-        id: 'ntfyScratch',
-        name: 'ntfyScratch',
-        color1: '#55bba6',
-        color2: '#358876',
+        id: "ntfyScratch",
+        name: Scratch.translate("ntfyScratch"),
+        color1: "#55bba6",
+        color2: "#358876",
         blocks: [
           {
-            func: 'openDoc',
+            func: "openDoc",
             blockType: Scratch.BlockType.BUTTON,
-            text: 'Documentation'
+            text: Scratch.translate("Documentation"),
           },
-		  {
-            func: 'openDocNtfy',
-            blockType: Scratch.BlockType.BUTTON,
-            text: 'ntfy.sh Documentation'
-          },
-		  '---',
           {
-            opcode: 'sendSimpleNotification',
+            func: "openDocNtfy",
+            blockType: Scratch.BlockType.BUTTON,
+            text: Scratch.translate("ntfy.sh Documentation"),
+          },
+          "---",
+          {
+            opcode: "sendSimpleNotification",
             blockType: Scratch.BlockType.COMMAND,
-            text: 'send message [MESSAGE] to topic [TOPIC]',
+            text: Scratch.translate("send message [MESSAGE] to topic [TOPIC]"),
             arguments: {
               TOPIC: {
                 type: Scratch.ArgumentType.STRING,
-                defaultValue: 'mytopic'
+                defaultValue: "mytopic",
               },
               MESSAGE: {
                 type: Scratch.ArgumentType.STRING,
-                defaultValue: 'Hello from TurboWarp!'
-              }
-            }
+                defaultValue: "Hello from TurboWarp!",
+              },
+            },
           },
+          "---",
           {
-            opcode: 'sendFullNotification',
+            opcode: "sendAdvancedNotification",
             blockType: Scratch.BlockType.COMMAND,
-            text: 'send notification to [TOPIC] title [TITLE] message [MESSAGE] priority [PRIORITY] tags [TAGS]',
+            text: Scratch.translate(
+              "send instant to [TOPIC] title [TITLE] message [MESSAGE] priority [PRIORITY] tags [TAGS] click [CLICK] attach url [ATTACH] filename [FILENAME] email [EMAIL]"
+            ),
             arguments: {
               TOPIC: {
                 type: Scratch.ArgumentType.STRING,
-                defaultValue: 'mytopic'
+                defaultValue: "mytopic",
               },
               TITLE: {
                 type: Scratch.ArgumentType.STRING,
-                defaultValue: 'Alert'
+                defaultValue: "Alert",
               },
               MESSAGE: {
                 type: Scratch.ArgumentType.STRING,
-                defaultValue: 'Project is running'
+                defaultValue: "Project is running",
               },
               PRIORITY: {
                 type: Scratch.ArgumentType.NUMBER,
                 defaultValue: 3,
-                menu: 'priorityMenu'
+                menu: "priorityMenu",
               },
               TAGS: {
                 type: Scratch.ArgumentType.STRING,
-                defaultValue: 'star,computer'
-              }
-            }
-          }
+                defaultValue: "star,computer",
+              },
+              CLICK: {
+                type: Scratch.ArgumentType.STRING,
+                defaultValue: "https://scratch.mit.edu",
+              },
+              ATTACH: { type: Scratch.ArgumentType.STRING, defaultValue: "" },
+              FILENAME: { type: Scratch.ArgumentType.STRING, defaultValue: "" },
+              EMAIL: { type: Scratch.ArgumentType.STRING, defaultValue: "" },
+            },
+          },
+          {
+            opcode: "sendScheduledNotification",
+            blockType: Scratch.BlockType.COMMAND,
+            text: Scratch.translate(
+              "send scheduled to [TOPIC] title [TITLE] message [MESSAGE] priority [PRIORITY] tags [TAGS] click [CLICK] attach url [ATTACH] filename [FILENAME] delay [DELAY]"
+            ),
+            arguments: {
+              TOPIC: {
+                type: Scratch.ArgumentType.STRING,
+                defaultValue: "mytopic",
+              },
+              TITLE: {
+                type: Scratch.ArgumentType.STRING,
+                defaultValue: "Scheduled Alert",
+              },
+              MESSAGE: {
+                type: Scratch.ArgumentType.STRING,
+                defaultValue: "See you later!",
+              },
+              PRIORITY: {
+                type: Scratch.ArgumentType.NUMBER,
+                defaultValue: 3,
+                menu: "priorityMenu",
+              },
+              TAGS: {
+                type: Scratch.ArgumentType.STRING,
+                defaultValue: "clock,calendar",
+              },
+              CLICK: {
+                type: Scratch.ArgumentType.STRING,
+                defaultValue: "https://xelabs.xmeroriginals.com",
+              },
+              ATTACH: { type: Scratch.ArgumentType.STRING, defaultValue: "" },
+              FILENAME: { type: Scratch.ArgumentType.STRING, defaultValue: "" },
+              DELAY: { type: Scratch.ArgumentType.STRING, defaultValue: "10s" },
+            },
+          },
         ],
         menus: {
           priorityMenu: {
             acceptReporters: true,
             items: [
-              { text: 'Max (5)', value: '5' },
-              { text: 'High (4)', value: '4' },
-              { text: 'Default (3)', value: '3' },
-              { text: 'Low (2)', value: '2' },
-              { text: 'Min (1)', value: '1' }
-            ]
-          }
-        }
+              { text: "Max (5)", value: "5" },
+              { text: "High (4)", value: "4" },
+              { text: "Default (3)", value: "3" },
+              { text: "Low (2)", value: "2" },
+              { text: "Min (1)", value: "1" },
+            ],
+          },
+        },
       };
     }
 
@@ -91,44 +138,67 @@
       const topic = args.TOPIC;
       const message = args.MESSAGE;
 
-      fetch(`https://ntfy.sh/${topic}`, {
-        method: 'POST',
-        body: message
-      }).catch(() => {});
+      Scratch.fetch(`https://ntfy.sh/${topic}`, {
+        method: "POST",
+        body: message,
+      }).catch((err) => {
+        console.warn("ntfyScratch: Failed to send simple notification", err);
+      });
     }
 
-    sendFullNotification(args) {
+    _sendComplexNtfy(args, isScheduled) {
       const bodyData = {
         topic: args.TOPIC,
         title: args.TITLE,
         message: args.MESSAGE,
         priority: parseInt(args.PRIORITY),
-        tags: args.TAGS.split(',').map(tag => tag.trim())
+        tags: args.TAGS ? args.TAGS.split(",").map((tag) => tag.trim()) : [],
       };
 
-      fetch('https://ntfy.sh/', {
-        method: 'POST',
+      if (args.CLICK && args.CLICK.length > 0) bodyData.click = args.CLICK;
+      if (args.ATTACH && args.ATTACH.length > 0) bodyData.attach = args.ATTACH;
+      if (args.FILENAME && args.FILENAME.length > 0)
+        bodyData.filename = args.FILENAME;
+
+      if (isScheduled) {
+        if (args.DELAY && args.DELAY.length > 0) bodyData.delay = args.DELAY;
+      } else {
+        if (args.EMAIL && args.EMAIL.length > 0) bodyData.email = args.EMAIL;
+      }
+
+      Scratch.fetch("https://ntfy.sh/", {
+        method: "POST",
         body: JSON.stringify(bodyData),
         headers: {
-          'Content-Type': 'application/json'
+          "Content-Type": "application/json",
+        },
+      }).catch((err) => {
+        console.warn("ntfyScratch: Failed to send notification", err);
+      });
+    }
+
+    sendAdvancedNotification(args) {
+      this._sendComplexNtfy(args, false);
+    }
+
+    sendScheduledNotification(args) {
+      this._sendComplexNtfy(args, true);
+    }
+
+    _openUrl(url) {
+      Scratch.canOpenWindow(url).then((allowed) => {
+        if (allowed) {
+          Scratch.openWindow(url, "_blank");
         }
-      }).catch(() => {});
+      });
     }
 
     openDoc() {
-      Scratch.canOpenWindow('http://xelabs.xmeroriginals.com/docs/ntfyScratch/').then((allowed) => {
-        if (allowed) {
-          window.open('http://xelabs.xmeroriginals.com/docs/ntfyScratch/', '_blank');
-        }
-      });
+      this._openUrl("https://xelabs.xmeroriginals.com/docs/ntfyScratch/");
     }
-	
-	openDocNtfy() {
-      Scratch.canOpenWindow('https://ntfy.sh/docs/').then((allowed) => {
-        if (allowed) {
-          window.open('https://ntfy.sh/docs/', '_blank');
-        }
-      });
+
+    openDocNtfy() {
+      this._openUrl("https://ntfy.sh/docs/");
     }
   }
 
